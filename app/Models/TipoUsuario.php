@@ -10,10 +10,6 @@ class TipoUsuario extends Model
 {
     use HasFactory, Sortable;
 
-    protected $fillable = ['id', 'descricao'];
-    public $sortable = ['id', 'descricao'];
-
-    public function user() {
-        return $this->hasMany(User::class);
-    }
+    protected $fillable = ["descricao"];
+    public $sortable = ["id", "descricao"];
 }
