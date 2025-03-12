@@ -3,7 +3,7 @@
         <a href="/profile" class="link-underline link-underline-opacity-0 h-50">
             <i class="ri-user-smile-line ri-4x text-black"></i>
         </a>
-        <p>{{ auth()->user()->name }}</p>
+        <p>@auth {{ auth()->user()->name }} @else Nome de Usuário @endauth</p>
         <div>
             <a class="dropdown-item text-center" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 sair
@@ -44,10 +44,10 @@
                 </span>
             </a>
             @endif
-    
-          
-    
-    
+
+
+
+
         </div>
     </div>
 </div>

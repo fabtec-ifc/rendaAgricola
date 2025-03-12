@@ -17,7 +17,7 @@
         @component('header')
         @endcomponent
 
-        @auth
+        {{-- @auth --}}
 
         <div class="d-flex">
             @component('side')
@@ -31,7 +31,7 @@
             </main>
         </div>
 
-        @endauth
+        {{-- @endauth --}}
 
         <main role="main" class="p-3 w-100">
             @hasSection ('register')
