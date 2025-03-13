@@ -1,6 +1,6 @@
 <fieldset>
     <div class="d-flex justify-content-center">
-        <h2>Cadastrar Tipo de Usuário</h2>
+        <h2>@isset($tipoUsuario->id) Atualizar @else Cadastrar @endisset Tipo de Usuário</h2>
     </div>
 
     <div class="row justify-content-center mt-3">
