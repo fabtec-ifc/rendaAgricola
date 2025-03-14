@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TermosPoliticasController;
 
 use App\Http\Controllers\TipoUsuarioController;
+use App\Http\Controllers\EstadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::get("/", function(){
 })->name("home");
 
 Route::resource("/tipoUsuario", TipoUsuarioController::class);
+Route::resource("/estado", EstadoController::class);
 
 /*
 Route::get('/', function () {
