@@ -62,7 +62,7 @@
                     <form name="form_delete" action="{{ route('estado.destroy', $estado->id) }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <span data-bs-toggle="modal" data-bs-target="#mostrarModalExlusao" onclick="botaoExcluir(this, '{{ $estado->descricao }}', 'Estado')">
+                        <span data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, '{{ $estado->descricao }}', 'Estado')">
                             <button type="button" class="btn btn-light-red btn-sm" data-bs-toggle="tooltip" data-bs-title="Excluir">
                                 <i class="ri-delete-bin-line text-red"></i>
                             </button>
