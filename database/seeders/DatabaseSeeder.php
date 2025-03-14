@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            TipoUsuarioSeeder::class
+            TipoUsuarioSeeder::class,
+            EstadoSeeder::class
         ]);
     }
 }

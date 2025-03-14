@@ -13,7 +13,7 @@ class TipoUsuarioController extends Controller
     public function index()
     {
         $filtro = request()->input("filtro");
-        $tiposUsuario = TipoUsuario::where("descricao", "LIKE", $filtro."%")->sortable()->paginate(10);
+        $tiposUsuario = TipoUsuario::where("descricao", "LIKE", $filtro."%")->sortable()->paginate(12);
 
         if(request()->session()->has("toast"))
             return view("tipoUsuario.index")->with("tiposUsuario", $tiposUsuario)->with("filtro", $filtro)->with(session("toast"));
@@ -76,7 +76,7 @@ class TipoUsuarioController extends Controller
             return redirect()->route("tipoUsuario.index")->with("toast", ["type" => "warning", "message" => "Erro inesperado: ".$e->getMessage().""]);
         }
 
-        return redirect()->route("tipoUsuario.index")->with("toast", ["type" => "success", "message" => "Tipo de Usuário alterado com sucesso!"]);
+        return redirect()->route("tipoUsuario.index")->with("toast", ["type" => "success", "message" => "Tipo de Usuário atualizado com sucesso!"]);
     }
 
     /**
