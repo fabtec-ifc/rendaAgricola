@@ -40,6 +40,7 @@ Route::get("/", function(){
 
 Route::resource("/tipoUsuario", TipoUsuarioController::class);
 Route::resource("/estado", EstadoController::class);
+Route::resource("/faixaEtaria", FaixaEtariaController::class);
 
 /*
 Route::get('/', function () {
