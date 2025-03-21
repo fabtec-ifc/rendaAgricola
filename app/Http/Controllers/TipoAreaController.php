@@ -18,7 +18,7 @@ class TipoAreaController extends Controller
         if(request()->session()->has("toast"))
             return view("tipoArea.index")->with("tiposArea", $tiposArea)->with("filtro", $filtro)->with(session("toast"));
 
-        return view("tiposArea.index")->with("tiposArea", $tiposArea)->with("filtro", $filtro);
+        return view("tipoArea.index")->with("tiposArea", $tiposArea)->with("filtro", $filtro);
     }
 
     /**
