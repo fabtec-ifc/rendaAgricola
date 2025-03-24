@@ -47,7 +47,7 @@
             <tr>
                 <th scope="row">{{ $tipoArea->id }}</th>
                 <td> {{ $tipoArea->descricao }} </td>
-                <td> {{ $tipoArea->areaPropria }} </td>
+                <td> @if($tipoArea->areaPropria) Sim @else Não @endif </td>
                 <td class="text-center">
                     <a class="btn btn-light-blue btn-sm" href="{{ route('tipoArea.show', $tipoArea->id) }}" data-bs-toggle="tooltip" data-bs-title="Ver">
                         <i class="ri-expand-diagonal-line text-blue"></i>

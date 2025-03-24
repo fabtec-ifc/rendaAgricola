@@ -22,12 +22,35 @@
 
             <div class="mt-3">
                 <label for="areaPropria">Área Própria</label>
-                <input
-                    type="radio"
-                    class="form-control"
-                    name="areaPropria"
-                    id="areaPropria"
-                >
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input
+                            type="radio"
+                            class="form-check-input"
+                            name="areaPropria"
+                            id="areaPropria1"
+                            value="1"
+                            @if(isset($tipoArea->areaPropria) && $tipoArea->areaPropria == 1) checked @endif
+                        >
+                        <label class="form-check-label" for="areaPropria1">
+                            Sim
+                        </label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input
+                            type="radio"
+                            class="form-check-input"
+                            name="areaPropria"
+                            id="areaPropria0"
+                            value="0"
+                            @if(isset($tipoArea->areaPropria) && $tipoArea->areaPropria == 0) checked @endif
+                        >
+                        <label class="form-check-label" for="areaPropria0">
+                            Não
+                        </label>
+                    </div>
+                </div>
             </div>
 
             <div class="row justify-content-center mt-3">
