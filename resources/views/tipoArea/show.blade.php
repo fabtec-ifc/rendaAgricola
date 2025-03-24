@@ -36,7 +36,7 @@
                         </button>
                     </span>
                 </form>
-                <a href="{{ route('estado.index') }}" class="btn btn-sm btn-light" data-bs-toggle="tooltip" data-bs-title="Pesquisar">
+                <a href="{{ route('tipoArea.index') }}" class="btn btn-sm btn-light" data-bs-toggle="tooltip" data-bs-title="Pesquisar">
                     <i class="ri-search-line"></i>
                 </a>
             </div>
