@@ -1,7 +1,8 @@
 $(document).ready(function () {
     $("#form").validate({
         rules: {
-            descricao: "required"
+            descricao: "required",
+            areaPropria: "required"
         },
         highlight: function(element) {
             $(element).addClass('is-invalid');
@@ -12,4 +13,4 @@ $(document).ready(function () {
             $(element).addClass('is-valid');
         }
     });
-})
+})  
