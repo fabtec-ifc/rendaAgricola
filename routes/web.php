@@ -12,6 +12,7 @@ use App\Http\Controllers\TermosPoliticasController;
 
 use App\Http\Controllers\TipoUsuarioController;
 use App\Http\Controllers\EstadoController;
+use App\Http\Controllers\TipoMaoDeObraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::get("/", function(){
 
 Route::resource("/tipoUsuario", TipoUsuarioController::class);
 Route::resource("/estado", EstadoController::class);
+Route::resource("/tipoMaoDeObra", TipoMaoDeObraController::class);
 
 /*
 Route::get('/', function () {
