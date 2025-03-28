@@ -2,13 +2,13 @@
 
 @section("body")
 
-    <h3>Estados</h3>
+    <h3>Tipos de Área</h3>
 
-    {{-- Pesquisa e botão de cadastro de Estados --}}
+    {{-- Pesquisa e botão de cadastro de Tipo de Área --}}
     <div class="d-flex justify-content-between mb-3">
-        <form action="{{ route('estado.index') }}" method="get">
+        <form action="{{ route('tipoArea.index') }}" method="get">
             <div class="d-flex gap-2">
-                <input placeholder="Pesquisar Estado" class="form-control" type="text" name="filtro" id="filtro" value="{{ $filtro }}">
+                <input placeholder="Pesquisar Tipo de Área" class="form-control" type="text" name="filtro" id="filtro" value="{{ $filtro }}">
                 <button class="btn btn-light border-secondary" type="submit">
                     <span class="d-flex align-items-center gap-1 text-secondary">
                         <i class="ri-search-line"></i>
@@ -18,15 +18,15 @@
             </div>
         </form>
 
-        <a href="{{ route('estado.create') }}" class="btn btn-light-green border-green text-green">
+        <a href="{{ route('tipoArea.create') }}" class="btn btn-light-green border-green text-green">
             <span class="d-flex align-items-center gap-1">
                 <i class="ri-add-line"></i>
-                Novo Estado
+                Novo Tipo de Área
             </span>
         </a>
     </div>
 
-    {{-- Tabela de Estados --}}
+    {{-- Tabela de Tipos de Área --}}
     <table class="table table-striped table-hover">
         <thead>
             <tr>
@@ -37,32 +37,32 @@
                     @sortablelink('descricao', 'Descrição')
                 </th>
                 <th scope="col" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    @sortablelink('sigla', 'Sigla')
+                    @sortablelink('areaPropria', 'Área Própria')
                 </th>
                 <th scope="col" colspan="3" class="col-3 text-center">Ações</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
-        @foreach($estados as $estado)
+        @foreach($tiposArea as $tipoArea)
             <tr>
-                <th scope="row">{{ $estado->id }}</th>
-                <td> {{ $estado->descricao }} </td>
-                <td> {{ $estado->sigla }} </td>
+                <th scope="row">{{ $tipoArea->id }}</th>
+                <td> {{ $tipoArea->descricao }} </td>
+                <td> @if($tipoArea->areaPropria) Sim @else Não @endif </td>
                 <td class="text-center">
-                    <a class="btn btn-light-blue btn-sm" href="{{ route('estado.show', $estado->id) }}" data-bs-toggle="tooltip" data-bs-title="Ver">
+                    <a class="btn btn-light-blue btn-sm" href="{{ route('tipoArea.show', $tipoArea->id) }}" data-bs-toggle="tooltip" data-bs-title="Ver">
                         <i class="ri-expand-diagonal-line text-blue"></i>
                     </a>
                 </td>
                 <td class="text-center">
-                    <a class="btn btn-light-orange btn-sm" href="{{ route('estado.edit', $estado->id) }}" data-bs-toggle="tooltip" data-bs-title="Editar">
+                    <a class="btn btn-light-orange btn-sm" href="{{ route('tipoArea.edit', $tipoArea->id) }}" data-bs-toggle="tooltip" data-bs-title="Editar">
                         <i class="ri-edit-box-line text-orange"></i>
                     </a>
                 </td>
                 <td class="text-center">
-                    <form name="form_delete" action="{{ route('estado.destroy', $estado->id) }}" method="post">
+                    <form name="form_delete" action="{{ route('tipoArea.destroy', $tipoArea->id) }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <span data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, '{{ $estado->descricao }}', 'Estado')">
+                        <span data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, '{{ $tipoArea->descricao }}', 'Tipo de Área')">
                             <button type="button" class="btn btn-light-red btn-sm" data-bs-toggle="tooltip" data-bs-title="Excluir">
                                 <i class="ri-delete-bin-line text-red"></i>
                             </button>
@@ -75,7 +75,7 @@
     </table>
 
     <div class="card-footer">
-        {!! $estados->appends(\Request::except('page'))->render() !!}
+        {!! $tiposArea->appends(\Request::except('page'))->render() !!}
     </div>
 
     @push('modal')
