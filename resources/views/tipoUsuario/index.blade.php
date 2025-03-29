@@ -8,7 +8,7 @@
     <div class="d-flex justify-content-between mb-3">
         <form action="{{ route('tipoUsuario.index') }}" method="get">
             <div class="d-flex gap-2">
-                <input placeholder="Pesquisar Tipo de Usuário" class="form-control" type="text" name="filtro" id="filtro" value="{{ $filtro }}">
+                <input placeholder="Pesquisar Tipo de Usuário" class="form-control" type="text" name="filtro" id="filtro" size="25" value="{{ $filtro }}">
                 <button class="btn btn-light border-secondary" type="submit">
                     <span class="d-flex align-items-center gap-1 text-secondary">
                         <i class="ri-search-line"></i>

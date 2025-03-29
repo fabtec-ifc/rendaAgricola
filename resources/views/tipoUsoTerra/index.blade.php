@@ -2,13 +2,13 @@
 
 @section("body")
 
-    <h3>Tipo Uso da Terra</h3>
+    <h3>Tipos de Uso da Terra</h3>
 
     {{-- Pesquisa e botão de cadastro de TipoUsoTerra --}}
     <div class="d-flex justify-content-between mb-3">
         <form action="{{ route('tipoUsoTerra.index') }}" method="get">
             <div class="d-flex gap-2">
-                <input placeholder="Pesquisar tipoUsoTerra" class="form-control" type="text" name="filtro" id="filtro" value="{{ $filtro }}">
+                <input placeholder="Pesquisar Tipo de Uso da Terra" class="form-control" type="text" name="filtro" id="filtro" size="25" value="{{ $filtro }}">
                 <button class="btn btn-light border-secondary" type="submit">
                     <span class="d-flex align-items-center gap-1 text-secondary">
                         <i class="ri-search-line"></i>
@@ -37,7 +37,7 @@
                     @sortablelink('descricao', 'Descrição')
                 </th>
                 <th scope="col" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                    @sortablelink('areaUtil')
+                    @sortablelink('areaUtil', 'Área Útil')
                 </th>
                 <th scope="col" colspan="3" class="col-3 text-center">Ações</th>
             </tr>
@@ -62,7 +62,7 @@
                     <form name="form_delete" action="{{ route('tipoUsoTerra.destroy', $tipoUsoTerra->id) }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <span data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, '{{ $tipoUsoTerra->descricao }}', 'tipoUsoTerra')">
+                        <span data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, '{{ $tipoUsoTerra->descricao }}', 'Tipo de Uso da Terra')">
                             <button type="button" class="btn btn-light-red btn-sm" data-bs-toggle="tooltip" data-bs-title="Excluir">
                                 <i class="ri-delete-bin-line text-red"></i>
                             </button>

@@ -1,6 +1,6 @@
 <fieldset>
     <div class="d-flex justify-content-center">
-        <h2>@isset($tipoUsoTerra->id) Atualizar @else Cadastrar @endisset TipoUsoTerra</h2>
+        <h2>@isset($tipoUsoTerra->id) Atualizar @else Cadastrar @endisset Tipo de Uso da Terra</h2>
     </div>
 
     <div class="row justify-content-center mt-3">

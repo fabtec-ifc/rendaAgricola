@@ -33,7 +33,7 @@ class TipoUsoTerraController extends Controller
      */
     public function store(Request $request)
     {
-        $tipoUsoTerra = new tipoUsoTerra();
+        $tipoUsoTerra = new TipoUsoTerra();
 
         $tipoUsoTerra->descricao = $request->input("descricao");
         $tipoUsoTerra->areaUtil = $request->input("areaUtil");
