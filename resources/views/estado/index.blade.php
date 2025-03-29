@@ -33,10 +33,10 @@
                 <th scope="col" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                     @sortablelink('id', 'Código')
                 </th>
-                <th scope="col" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <th scope="col" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                     @sortablelink('descricao', 'Descrição')
                 </th>
-                <th scope="col" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <th scope="col" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                     @sortablelink('sigla', 'Sigla')
                 </th>
                 <th scope="col" colspan="3" class="col-3 text-center">Ações</th>
