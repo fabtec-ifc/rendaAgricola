@@ -1,16 +1,16 @@
 <fieldset>
     <div class="d-flex justify-content-center">
-        <h2>@isset($faixaEtaria->id) Atualizar @else Cadastrar @endisset Tipo de Usuário</h2>
+        <h2>@isset($faixaEtaria->id) Atualizar @else Cadastrar @endisset Faixa Etária</h2>
     </div>
 
     <div class="row justify-content-center mt-3">
         <div class="col-12 col-md-3 form-group">
 
             <div>
-                <label for="inicio">Inicio</label>
+                <label for="inicio">Início</label>
                 <input
                     type="text"
-                    placeholder="Informe a Inicio"
+                    placeholder="Informe o início do intervalo"
                     class="form-control"
                     name="inicio"
                     required="required"
@@ -18,10 +18,13 @@
                     value="@isset($faixaEtaria->inicio){{ $faixaEtaria->inicio }}@endisset"
                     id="inicio"
                 >
+            </div>
+
+            <div class="mt-3">
                 <label for="fim">Fim</label>
                 <input
                     type="text"
-                    placeholder="Informe a fim"
+                    placeholder="Informe o fim do intervalo"
                     class="form-control"
                     name="fim"
                     required="required"
@@ -29,10 +32,13 @@
                     value="@isset($faixaEtaria->fim){{ $faixaEtaria->fim }}@endisset"
                     id="fim"
                 >
-                <label for="multiplicador">multiplicador</label>
+            </div>
+
+            <div class="mt-3">
+                <label for="multiplicador">Multiplicador</label>
                 <input
                     type="text"
-                    placeholder="Informe a multiplicador"
+                    placeholder="Informe o multiplicador"
                     class="form-control"
                     name="multiplicador"
                     required="required"

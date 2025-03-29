@@ -11,5 +11,5 @@ class FaixaEtaria extends Model
     use HasFactory, sortable;
 
     protected $fillable = ['inicio','fim','multiplicador'];
-    public $sortable = ['id','inicio','fim','multiplicador','created_at','updated_at'];
+    public $sortable = ['id','inicio','fim','multiplicador'];
 }

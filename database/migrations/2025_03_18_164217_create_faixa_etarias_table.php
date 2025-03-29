@@ -16,8 +16,7 @@ return new class extends Migration
             $table->integer('inicio');
             $table->integer('fim');
             $table->double('multiplicador');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

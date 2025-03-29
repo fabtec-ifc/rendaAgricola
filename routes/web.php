@@ -12,6 +12,7 @@ use App\Http\Controllers\TermosPoliticasController;
 
 use App\Http\Controllers\TipoUsuarioController;
 use App\Http\Controllers\EstadoController;
+use App\Http\Controllers\FaixaEtariaController;
 
 /*
 |--------------------------------------------------------------------------

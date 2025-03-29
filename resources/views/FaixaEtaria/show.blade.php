@@ -2,18 +2,22 @@
 
 @section("body")
 
-    {{-- Detalhes do Tipo de Usuário --}}
+    {{-- Detalhes da Faixa Etária --}}
     <div class="row justify-content-center">
         <div class="col-12 col-xl-6 d-flex flex-column align-items-center">
             <h2>
-                Detalhes da Faixa Etaria
+                Detalhes da Faixa Etária
             </h2>
             <h6>Código: {{ $faixaEtaria->id }}</h6>
             <hr class="w-100">
             <div class="row w-100 text-center align-items-center justify-content-center my-2">
-                <div class="col-6">
-                    <p class="my-1">Inicio: <span class="fw-bold">{{ $faixaEtaria->inicio }}</span></p>
+                <div class="col-2">
+                    <p class="my-1">Início: <span class="fw-bold">{{ $faixaEtaria->inicio }}</span></p>
+                </div>
+                <div class="col-2">
                     <p class="my-1">Fim: <span class="fw-bold">{{ $faixaEtaria->fim }}</span></p>
+                </div>
+                <div class="col-3">
                     <p class="my-1">Multiplicador: <span class="fw-bold">{{ $faixaEtaria->multiplicador }}</span></p>
                 </div>
             </div>
@@ -25,7 +29,7 @@
                 <form name="form_delete" action="{{ route('faixaEtaria.destroy', $faixaEtaria->id) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <span class="w-100" data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, '{{ $faixaEtaria->descricao }}', 'Tipo de Usuário')">
+                    <span class="w-100" data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, '{{ $faixaEtaria->inicio }} a {{ $faixaEtaria->fim }} anos', 'Faixa Etária de')">
                         <button type="button" class="btn btn-sm btn-light-red text-red" data-bs-toggle="tooltip" data-bs-title="Excluir">
                             <i class="ri-delete-bin-line text-red"></i>
                         </button>

@@ -2,64 +2,44 @@
 
 @section("body")
 
-    <h3>Faixa Etaria</h3>
+    <h3>Faixas Etárias</h3>
 
-    {{-- Pesquisa e botão de cadastro de Tipo de Usuário --}}
+    {{-- Pesquisa e botão de cadastro de Faixas Etárias --}}
     <div class="d-flex justify-content-between mb-3">
-        <form action="{{ route('faixaEtaria.index') }}" method="get">
-            <div class="d-flex gap-2">
-                <input placeholder="Pesquisar Tipo de Usuário" class="form-control" type="text" name="filtro" id="filtro" value="{{ $filtro }}">
-                <button class="btn btn-light border-secondary" type="submit">
-                    <span class="d-flex align-items-center gap-1 text-secondary">
-                        <i class="ri-search-line"></i>
-                        Pesquisar
-                    </span>
-                </button>
-            </div>
-        </form>
-
         <a href="{{ route('faixaEtaria.create') }}" class="btn btn-light-green border-green text-green">
             <span class="d-flex align-items-center gap-1">
                 <i class="ri-add-line"></i>
-                Novo Tipo de Usuário
+                Nova Faixa Etária
             </span>
         </a>
     </div>
 
-    {{-- Tabela de Tipos de Usuário --}}
+    {{-- Tabela de Faixas Etárias --}}
     <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th scope="col" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                     @sortablelink('id', 'Código')
                 </th>
-                <th scope="col" class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    @sortablelink('inicio', 'inicio')
+                <th scope="col" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    @sortablelink('inicio', 'Início')
                 </th>
-                <th scope="col" class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    @sortablelink('fim', 'fim')
+                <th scope="col" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    @sortablelink('fim', 'Fim')
                 </th>
-                <th scope="col" class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    @sortablelink('multiplicador', 'multiplicador')
-                </th>
-                <th scope="col" class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    @sortablelink('created_at', 'created_at')
-                </th>
-                <th scope="col" class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                    @sortablelink('updated_at', 'updated_at')
+                <th scope="col" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    @sortablelink('multiplicador', 'Multiplicador')
                 </th>
                 <th scope="col" colspan="3" class="col-3 text-center">Ações</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
-        @foreach($faixaEtaria as $faixaEtaria)
+        @foreach($faixasEtarias as $faixaEtaria)
             <tr>
                 <th scope="row">{{ $faixaEtaria->id }}</th>
                 <td> {{ $faixaEtaria->inicio }} </td>
                 <td> {{ $faixaEtaria->fim }} </td>
                 <td> {{ $faixaEtaria->multiplicador }} </td>
-                <td> {{ $faixaEtaria->created_at }} </td>
-                <td> {{ $faixaEtaria->updated_at }} </td>
                 <td class="text-center">
                     <a class="btn btn-light-blue btn-sm" href="{{ route('faixaEtaria.show', $faixaEtaria->id) }}" data-bs-toggle="tooltip" data-bs-title="Ver">
                         <i class="ri-expand-diagonal-line text-blue"></i>
@@ -74,7 +54,7 @@
                     <form name="form_delete" action="{{ route('faixaEtaria.destroy', $faixaEtaria->id) }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <span data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, '{{ $tipoUsuario->descricao }}', 'Tipo de Usuário')">
+                        <span data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, '{{ $faixaEtaria->inicio }} a {{ $faixaEtaria->fim }} anos', 'Faixa Etária de')">
                             <button type="button" class="btn btn-light-red btn-sm" data-bs-toggle="tooltip" data-bs-title="Excluir">
                                 <i class="ri-delete-bin-line text-red"></i>
                             </button>
@@ -87,7 +67,7 @@
     </table>
 
     <div class="card-footer">
-        {!! $faixaEtaria->appends(\Request::except('page'))->render() !!}
+        {!! $faixasEtarias->appends(\Request::except('page'))->render() !!}
     </div>
 
     @push('modal')
