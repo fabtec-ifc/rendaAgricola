@@ -8,7 +8,7 @@
     <div class="d-flex justify-content-between mb-3">
         <form action="{{ route('tipoMaoDeObra.index') }}" method="get">
             <div class="d-flex gap-2">
-                <input placeholder="Pesquisar Tipo de Mão de Obra" class="form-control" type="text" name="filtro" id="filtro" value="{{ $filtro }}">
+                <input placeholder="Pesquisar Tipo de Mão de Obra" class="form-control" type="text" name="filtro" id="filtro" size="30" value="{{ $filtro }}">
                 <button class="btn btn-light border-secondary" type="submit">
                     <span class="d-flex align-items-center gap-1 text-secondary">
                         <i class="ri-search-line"></i>

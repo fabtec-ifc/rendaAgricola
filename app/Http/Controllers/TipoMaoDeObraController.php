@@ -37,7 +37,7 @@ class TipoMaoDeObraController extends Controller
             return redirect()->route("tipoMaoDeObra.index")->with("toast", ["type" => "warning", "message" => "Erro inesperado: ".$e->getMessage().""]);
         }
 
-        return redirect()->route("tipoMaoDeObra.index")->with("toast", ["type" => "warning", "message" => "Tipo de mão de obra adicionado com sucesso!"]);
+        return redirect()->route("tipoMaoDeObra.index")->with("toast", ["type" => "success", "message" => "Tipo de Mão de Obra adicionado com sucesso!"]);
     }
 
     public function show(TipoMaoDeObra $tipoMaoDeObra)
@@ -67,10 +67,10 @@ class TipoMaoDeObraController extends Controller
     {
         try {
             $tipoMaoDeObra->delete();
-        } catch (\Except $e) {
+        } catch (\Exception $e) {
             return redirect()->route("tipoMaoDeObra.index")->with("toast", ["type" => "warning", "message" => "Erro inesperado: ".$e->getMessage().""]);
         }
-        
-        return redirect()->route("tipoMaoDeObra.index")->with("toast", ["type" => "warning", "message" => "Tipo de mão de obra excluído com sucesso!"]);
+
+        return redirect()->route("tipoMaoDeObra.index")->with("toast", ["type" => "success", "message" => "Tipo de Mão de Obra excluído com sucesso!"]);
     }
 }
