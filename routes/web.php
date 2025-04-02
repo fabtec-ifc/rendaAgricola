@@ -16,6 +16,7 @@ use App\Http\Controllers\FaixaEtariaController;
 use App\Http\Controllers\TipoMaoDeObraController;
 use App\Http\Controllers\TipoUsoTerraController;
 use App\Http\Controllers\TipoAreaController;
+use App\Http\Controllers\MunicipioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@ Route::resource("/faixaEtaria", FaixaEtariaController::class);
 Route::resource("/tipoMaoDeObra", TipoMaoDeObraController::class);
 Route::resource("/tipoUsoTerra", TipoUsoTerraController::class);
 Route::resource("/tipoArea", TipoAreaController::class);
+Route::resource("/municipio", MunicipioController::class);
 
 /*
 Route::get('/', function () {
