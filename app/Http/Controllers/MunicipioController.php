@@ -39,7 +39,7 @@ class MunicipioController extends Controller
     {
         $municipio = new Municipio();
 
-        $municipio->descricao = $request->input("municipio");
+        $municipio->descricao = $request->input("descricao");
         $municipio->estado_id = $request->input("estado_id");
 
         try{
@@ -66,7 +66,7 @@ class MunicipioController extends Controller
     {
         $estados = Estado::all();
 
-        return view("municipio.edit")->with("estados", $estados);
+        return view("municipio.edit")->with("municipio", $municipio)->with("estados", $estados);
     }
 
     /**

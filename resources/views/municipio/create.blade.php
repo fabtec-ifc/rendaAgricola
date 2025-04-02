@@ -2,7 +2,7 @@
 
 @section("body")
 
-<form id="form" action="{{ route('municipio.form') }}" method="POST">
+<form id="form" action="{{ route('municipio.store') }}" method="POST">
 @csrf
 
 @include("municipio.form")

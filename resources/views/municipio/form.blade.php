@@ -35,8 +35,6 @@
                                 selected
                             @endif
                         >
-                        <!-- Continuar -->
-
                             {{ $estado->descricao }}
                         </option>
                     @endforeach
@@ -50,11 +48,11 @@
                         class="btn btn-light-blue text-blue border-blue"
                         name="acao"
                         value="salvar"
-                        id="acao">@isset($tipoArea->id) Alterar @else Salvar @endisset
+                        id="acao">@isset($municipio->id) Alterar @else Salvar @endisset
                     </button>
                 </div>
                 <div class="col-6 text-start">
-                    <a href="/tipoArea" class="btn btn-light border-secondary">Consultar</a>
+                    <a href="/municipio" class="btn btn-light border-secondary">Consultar</a>
                 </div>
             </div>
 
@@ -65,5 +63,5 @@
 </form>
 
 @push('validation')
-    @vite('resources/js/validation/tipoArea.js')
+    @vite('resources/js/validation/municipio.js')
 @endpush
