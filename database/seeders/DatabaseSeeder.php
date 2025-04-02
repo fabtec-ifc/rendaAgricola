@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TipoUsuarioSeeder::class,
             EstadoSeeder::class,
+            MunicipioSeeder::class,
             TipoMaoDeObraSeeder::class
         ]);
     }
