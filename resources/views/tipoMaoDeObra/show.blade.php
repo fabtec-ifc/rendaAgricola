@@ -23,7 +23,7 @@
                 <form name="form_delete" action="{{ route('tipoMaoDeObra.destroy', $tipoMaoDeObra->id) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <span class="w-100" data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, '{{ $tipoMaoDeObra->descricao }}', 'Tipo de Mão de Obra')">
+                    <span class="w-100" data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, `{{ $tipoMaoDeObra->descricao }}`, 'Tipo de Mão de Obra')">
                         <button type="button" class="btn btn-sm btn-light-red text-red" data-bs-toggle="tooltip" data-bs-title="Excluir">
                             <i class="ri-delete-bin-line text-red"></i>
                         </button>
