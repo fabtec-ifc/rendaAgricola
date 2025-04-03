@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\UnidadeProducao;
+use App\Models\Estado;
+use App\Models\Municipio;
 use Illuminate\Http\Request;
 
 class UnidadeProducaoController extends Controller
@@ -12,7 +14,13 @@ class UnidadeProducaoController extends Controller
      */
     public function index()
     {
-        //
+        $filtro = request()->input("filtro");
+        $unidadesProducao = UnidadeProducao::where("nome", "LIKE", $filtro."%")->sortable()->paginate(12);
+
+        if(request()->session()->has("toast"))
+            return view("unidadeProducao.index")->with("unidadesProducao", $unidadesProducao)->with("filtro", $filtro)->with(session("toast"));
+
+        return view("unidadeProducao.index")->with("unidadesProducao", $unidadesProducao)->with("filtro", $filtro);
     }
 
     /**
@@ -20,7 +28,10 @@ class UnidadeProducaoController extends Controller
      */
     public function create()
     {
-        //
+        $estados = Estado::all();
+        $municipios = $estados->find(24)->municipios;
+
+        return view("unidadeProducao.create")->with("estados", $estados)->with("municipios", $municipios);
     }
 
     /**
@@ -28,7 +39,20 @@ class UnidadeProducaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $unidadeProducao = new UnidadeProducao();
+
+        $unidadeProducao->nome = $request->input("nome");
+        $unidadeProducao->endereco = $request->input("endereco");
+        $unidadeProducao->municipio_id = $request->input("municipio_id");
+        $unidadeProducao->telefone = $request->input("telefone");
+
+        try{
+            $unidadeProducao->save();
+        } catch(\Exception $e){
+            return redirect()->route("unidadeProducao.index")->with("toast", ["type" => "warning", "message" => "Erro inesperado: ".$e->getMessage()]);
+        }
+
+        return redirect()->route("unidadeProducao.index")->with("toast", ["type" => "success", "message" => "Unidade de Produção adicionada com sucesso!"]);
     }
 
     /**
@@ -36,7 +60,7 @@ class UnidadeProducaoController extends Controller
      */
     public function show(UnidadeProducao $unidadeProducao)
     {
-        //
+        return view("unidadeProducao.show")->with("unidadeProducao", $unidadeProducao);
     }
 
     /**
@@ -44,7 +68,10 @@ class UnidadeProducaoController extends Controller
      */
     public function edit(UnidadeProducao $unidadeProducao)
     {
-        //
+        $estados = Estado::all();
+        $municipios = Municipio::all();
+
+        return view("unidadeProducao.edit")->with("unidadeProducao", $unidadeProducao)->with("estados", $estados)->with("municipios", $municipios);
     }
 
     /**
@@ -52,7 +79,18 @@ class UnidadeProducaoController extends Controller
      */
     public function update(Request $request, UnidadeProducao $unidadeProducao)
     {
-        //
+        $unidadeProducao->nome = $request->input("nome");
+        $unidadeProducao->endereco = $request->input("endereco");
+        $unidadeProducao->municipio_id = $request->input("municipio_id");
+        $unidadeProducao->telefone = $request->input("telefone");
+
+        try{
+            $unidadeProducao->save();
+        } catch(\Exception $e){
+            return redirect()->route("unidadeProducao.index")->with("toast", ["type" => "warning", "message" => "Erro inesperado: ".$e->getMessage()]);
+        }
+
+        return redirect()->route("unidadeProducao.index")->with("toast", ["type" => "success", "message" => "Unidade de Produção atualizada com sucesso!"]);
     }
 
     /**
@@ -60,6 +98,21 @@ class UnidadeProducaoController extends Controller
      */
     public function destroy(UnidadeProducao $unidadeProducao)
     {
-        //
+        try{
+            $unidadeProducao->delete();
+        } catch(\Exception $e){
+            return redirect()->route("unidadeProducao.index")->with("toast", ["type" => "warning", "message" => "Erro inesperado: ".$e->getMessage()]);
+        }
+
+        return redirect()->route("unidadeProducao.index")->with("toast", ["type" => "success", "message" => "Unidade de Produção excluída com sucesso!"]);
+    }
+
+    public function selectEstado(){
+        $estado_id = request("estado_id");
+        $estado = Estado::find($estado_id);
+
+        $municipios = $estado->municipios;
+
+        return response()->json($municipios);
     }
 }

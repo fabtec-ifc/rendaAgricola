@@ -53,6 +53,8 @@ Route::resource("/tipoArea", TipoAreaController::class);
 Route::resource("/municipio", MunicipioController::class);
 Route::resource("/unidadeProducao", UnidadeProducaoController::class);
 
+Route::post("/selectEstado", [UnidadeProducaoController::class, "selectEstado"])->name("selectEstado");
+
 /*
 Route::get('/', function () {
     return redirect('/login');

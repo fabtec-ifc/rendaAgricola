@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string("endereco", 255);
             $table->unsignedBigInteger("municipio_id");
             $table->string("telefone", 45);
-            $table->json("coordenadasMapa");
+            $table->json("coordenadasMapa")->nullable();
             $table->timestamps();
             $table->foreign("municipio_id")->references("id")->on("municipios");
         });

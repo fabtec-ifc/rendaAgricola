@@ -15,8 +15,7 @@
                     <p class="my-1">Descrição: <span class="fw-bold">{{ $municipio->descricao }}</span></p>
                 </div>
                 <div class="col-5">
-                    <p class="my-1">Estado: <span class="fw-bold">{{ $municipio->estado->descricao }}</span>
-                    </p>
+                    <p class="my-1">Estado: <span class="fw-bold">{{ $municipio->estado->descricao }}</span></p>
                 </div>
             </div>
             <hr class="w-100">
