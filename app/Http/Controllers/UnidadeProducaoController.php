@@ -69,7 +69,7 @@ class UnidadeProducaoController extends Controller
     public function edit(UnidadeProducao $unidadeProducao)
     {
         $estados = Estado::all();
-        $municipios = Municipio::all();
+        $municipios = $estados->find($unidadeProducao->municipio->estado_id)->municipios;
 
         return view("unidadeProducao.edit")->with("unidadeProducao", $unidadeProducao)->with("estados", $estados)->with("municipios", $municipios);
     }
