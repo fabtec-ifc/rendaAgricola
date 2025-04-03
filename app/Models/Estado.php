@@ -12,4 +12,8 @@ class Estado extends Model
 
     protected $fillable = ["descricao", "sigla"];
     public $sortable = ["id", "descricao", "sigla"];
+
+    public function municipios(){
+        return $this->hasMany(Municipio::class);
+    }
 }
