@@ -1,14 +1,13 @@
 <?php
 
-
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -20,18 +19,19 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nome',
         'email',
         'token',
         'password',
         'politicas',
         'tipoUsuario_id',
         'lastMail',
-        'cpf',
-        'rg',
-        'linkDoLattes'
+        'apelido',
+        'habilitado',
+        'erros'
     ];
-    public $sortable = ['id', 'name', 'cpf'];
+
+    public $sortable = ['id', 'nome'];
 
     protected $attributes = [
         'habilitado' => 0,
@@ -56,6 +56,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'habilitado' => 'boolean',
+        'politicas' => 'boolean'
     ];
     
     public static function boot()
@@ -63,21 +65,18 @@ class User extends Authenticatable
         parent::boot();
 
         static::creating(function ($user) {
-            $currentTime = date("d/m/Y H:i:s");
-            $email = $user->email;
-            $combinedData = $currentTime . $email;
+            do {
+                $currentTime = now()->format('YmdHis');
+                $email = $user->email;
+                $combinedData = $currentTime . $email;
+                $token = substr(hash('sha256', $combinedData), 0, 6);
+            } while (self::where('token', $token)->exists());
             
-            $token = hash('sha256', $combinedData);
-            
-            $token = substr($token, 0, 6);
-        
             $user->token = $token;
         });
     }
 
-
     public function tipoUsuario() {
         return $this->belongsTo(TipoUsuario::class, 'tipoUsuario_id'); 
     }
-
 }
