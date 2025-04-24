@@ -33,21 +33,25 @@
                 <th scope="col" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                     @sortablelink('id', 'Código')
                 </th>
-                <th scope="col" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    @sortablelink('nome', 'Nome')
+                <th scope="col" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    @sortablelink('name', 'Nome')
                 </th>
-                {{--  <th scope="col" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    @sortablelink('municipio_id', 'Município')
-                </th> --}}
+                <th scope="col" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    @sortablelink('email', 'E-mail')
+                </th>
+                <th scope="col" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                    @sortablelink('tipo_usuario_id', 'Tipo de Usuário')
+                </th>
                 <th scope="col" colspan="3" class="col-3 text-center">Ações</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
-        @foreach($usuario as $usuarios)
+        @foreach($usuarios as $usuario)
             <tr>
                 <th scope="row">{{ $usuario->id }}</th>
-                <td> {{ $usuario->nome }} </td>
-                {{-- <td> {{ $unidadeProducao->municipio->descricao }} ({{ $unidadeProducao->municipio->estado->descricao }})</td> --}}
+                <td> {{ $usuario->name }} </td>
+                <td> {{ $usuario->email }} </td>
+                <td> {{ $usuario->tipoUsuario->descricao }} </td>
                 <td class="text-center">
                     <a class="btn btn-light-blue btn-sm" href="{{ route('usuario.show', $usuario->id) }}" data-bs-toggle="tooltip" data-bs-title="Ver">
                         <i class="ri-expand-diagonal-line text-blue"></i>
@@ -62,7 +66,7 @@
                     <form name="form_delete" action="{{ route('usuario.destroy', $usuario->id) }}" method="post">
                         @csrf
                         @method('DELETE')
-                        <span data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, `{{ $usuario->nome }}`, 'Usuário')">
+                        <span data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, `{{ $usuario->name }}`, 'Usuário')">
                             <button type="button" class="btn btn-light-red btn-sm" data-bs-toggle="tooltip" data-bs-title="Excluir">
                                 <i class="ri-delete-bin-line text-red"></i>
                             </button>

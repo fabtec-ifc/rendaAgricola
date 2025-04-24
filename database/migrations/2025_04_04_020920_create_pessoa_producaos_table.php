@@ -18,11 +18,11 @@ return new class extends Migration
             $table->date("dataNascimento");
             $table->integer("diasTrabalho");
             $table->unsignedBigInteger("tipo_mao_de_obra_id");
-            //$table->unsignedBigInteger("ano_agricola_id");
+            $table->unsignedBigInteger("ano_agricola_id");
             $table->timestamps();
-            
+
             $table->foreign("tipo_mao_de_obra_id")->references("id")->on("tipo_mao_de_obras");
-            //$table->foreign("ano_agricola_id")->references("id")->on("ano_agricolas");
+            $table->foreign("ano_agricola_id")->references("id")->on("ano_agricolas");
         });
     }
 

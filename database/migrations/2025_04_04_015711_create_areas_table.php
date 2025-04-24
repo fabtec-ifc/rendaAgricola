@@ -16,11 +16,11 @@ return new class extends Migration
             $table->integer("quantArea");
             $table->double("valorHectare");
             $table->unsignedBigInteger("tipo_area_id");
-            //$table->unsignedBigInteger("ano_agricola_id");
+            $table->unsignedBigInteger("ano_agricola_id");
 
             $table->foreign("tipo_area_id")->references("id")->on("tipo_areas");
-            //$table->foreign("ano_agricola_id")->references("id")->on("ano_agricolas");
-            
+            $table->foreign("ano_agricola_id")->references("id")->on("ano_agricolas");
+
             $table->timestamps();
         });
     }

@@ -17,11 +17,11 @@ return new class extends Migration
             $table->double("areaInaproveitavel");
 
             $table->unsignedBigInteger("tipo_uso_terra_id");
-            //$table->unsignedBigInteger("ano_agricola_id");
+            $table->unsignedBigInteger("ano_agricola_id");
 
             $table->foreign("tipo_uso_terra_id")->references("id")->on("tipo_uso_terras");
-            //$table->foreign("ano_agricola_id")->references("id")->on("ano_agricolas");
-            
+            $table->foreign("ano_agricola_id")->references("id")->on("ano_agricolas");
+
             $table->timestamps();
         });
     }

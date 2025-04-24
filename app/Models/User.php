@@ -19,22 +19,19 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nome',
+        'name',
         'email',
-        'token',
         'password',
         'politicas',
-        'tipoUsuario_id',
-        'lastMail',
-        'apelido',
+        'token',
         'habilitado',
-        'erros'
+        'tipo_usuario_id',
     ];
 
-    public $sortable = ['id', 'nome'];
+    public $sortable = ['id', 'name', 'email', 'tipo_usuario_id'];
 
     protected $attributes = [
-        'habilitado' => 0,
+        'habilitado' => 1,
         'erros' => 0,
     ];
 
@@ -59,7 +56,7 @@ class User extends Authenticatable
         'habilitado' => 'boolean',
         'politicas' => 'boolean'
     ];
-    
+
     public static function boot()
     {
         parent::boot();
@@ -71,12 +68,12 @@ class User extends Authenticatable
                 $combinedData = $currentTime . $email;
                 $token = substr(hash('sha256', $combinedData), 0, 6);
             } while (self::where('token', $token)->exists());
-            
+
             $user->token = $token;
         });
     }
 
     public function tipoUsuario() {
-        return $this->belongsTo(TipoUsuario::class, 'tipoUsuario_id'); 
+        return $this->belongsTo(TipoUsuario::class, 'tipo_usuario_id');
     }
 }
