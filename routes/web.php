@@ -18,6 +18,9 @@ use App\Http\Controllers\TipoUsoTerraController;
 use App\Http\Controllers\TipoAreaController;
 use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\UnidadeProducaoController;
+use App\Http\Controllers\AreaController;
+use App\Http\Controllers\UsoTerraController;
+use App\Http\Controllers\PessoaProducaoController;
 use App\Http\Controllers\AnoAgricolaController;
 use App\Http\Controllers\UserController;
 
@@ -54,9 +57,11 @@ Route::resource("/tipoUsoTerra", TipoUsoTerraController::class);
 Route::resource("/tipoArea", TipoAreaController::class);
 Route::resource("/municipio", MunicipioController::class);
 Route::resource("/unidadeProducao", UnidadeProducaoController::class);
+Route::resource("/area", AreaController::class);
+Route::resource("/usoTerra", UsoTerraController::class);
+Route::resource("/pessoaProducao", PessoaProducaoController::class);
 Route::resource("/anoAgricola", AnoAgricolaController::class);
 Route::resource("/usuario", UserController::class);
-
 
 Route::post("/selectEstado", [UnidadeProducaoController::class, "selectEstado"])->name("selectEstado");
 
