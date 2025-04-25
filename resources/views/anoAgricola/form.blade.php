@@ -1,6 +1,6 @@
 <fieldset>
     <div class="d-flex justify-content-center">
-        <h2>@isset($municipio->id) Atualizar @else Cadastrar @endisset Ano agrícola</h2>
+        <h2>@isset($anoAgricola->id) Atualizar @else Cadastrar @endisset Ano agrícola</h2>
     </div>
 
     <div class="row justify-content-center mt-3">
@@ -17,8 +17,8 @@
                     id="inicio"
                 >
             </div>
-            
-            <div>
+
+            <div class="mt-3">
                 <label for="fim">Fim</label>
                 <input
                     type="date"
@@ -38,14 +38,14 @@
                     class="form-select"
                     required="required"
                 >
-                    @foreach($unidadesProducao as $eunidadeProducao)
+                    @foreach($unidadesProducao as $unidadeProducao)
                         <option
                             value="{{ $unidadeProducao->id }}"
                             @if(isset($anoAgricola->unidade_producao_id) && $anoAgricola->unidade_producao_id == $unidadeProducao->id)
                                 selected
                             @endif
                         >
-                            {{ $unidadeProducao->descricao }}
+                            {{ $unidadeProducao->nome }}
                         </option>
                     @endforeach
                 </select>
@@ -58,11 +58,11 @@
                         class="btn btn-light-blue text-blue border-blue"
                         name="acao"
                         value="salvar"
-                        id="acao">@isset($municipio->id) Alterar @else Salvar @endisset
+                        id="acao">@isset($anoAgricola->id) Alterar @else Salvar @endisset
                     </button>
                 </div>
                 <div class="col-6 text-start">
-                    <a href="/municipio" class="btn btn-light border-secondary">Consultar</a>
+                    <a href="/anoAgricola" class="btn btn-light border-secondary">Consultar</a>
                 </div>
             </div>
 
@@ -73,5 +73,5 @@
 </form>
 
 @push('validation')
-    @vite('resources/js/validation/municipio.js')
+    @vite('resources/js/validation/anoAgricola.js')
 @endpush

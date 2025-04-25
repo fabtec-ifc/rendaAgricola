@@ -11,14 +11,14 @@
             <h6>Código: {{ $anoAgricola->id }}</h6>
             <hr class="w-100">
             <div class="row w-100 text-center align-items-center justify-content-center my-2">
-                <div class="col-12">
+                <div class="col-4">
                     <p class="my-1">Início: <span class="fw-bold">{{ $anoAgricola->inicio }}</span></p>
                 </div>
-                <div class="col-12">
+                <div class="col-4">
                     <p class="my-1">Fim: <span class="fw-bold">{{ $anoAgricola->fim }}</span></p>
                 </div>
-                <div class="col-5">
-                    <p class="my-1">Unidade de produção: <span class="fw-bold">{{ $anoAgricola->unidadeProducao->descricao }}</span></p>
+                <div class="col-12">
+                    <p class="my-1">Unidade de produção: <span class="fw-bold">{{ $anoAgricola->unidadeProducao->nome }}</span></p>
                 </div>
             </div>
             <hr class="w-100">
@@ -29,7 +29,7 @@
                 <form name="form_delete" action="{{ route('anoAgricola.destroy', $anoAgricola->id) }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <span class="w-100" data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, `{{ $anoAgricola->descricao }}`, 'Ano Agrícola')">
+                    <span class="w-100" data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, `{{ date_format(date_create($anoAgricola->inicio), 'd/m/Y') }} a {{ date_format(date_create($anoAgricola->fim), 'd/m/Y') }}`, 'Ano Agrícola de')">
                         <button type="button" class="btn btn-sm btn-light-red text-red" data-bs-toggle="tooltip" data-bs-title="Excluir">
                             <i class="ri-delete-bin-line text-red"></i>
                         </button>

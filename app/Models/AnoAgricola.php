@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class AnoAgricola extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
 
     protected $fillable = ["fim", "inicio", "unidade_producao_id"];
     public $sortable = ["id", "fim", "inicio", "unidade_producao_id"];
@@ -15,5 +16,5 @@ class AnoAgricola extends Model
     public function unidadeProducao(){
         return $this->belongsTo(UnidadeProducao::class);
     }
-    
+
 }

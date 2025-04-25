@@ -1,7 +1,9 @@
 $(document).ready(function () {
     $("#form").validate({
         rules: {
-            descricao: "required"
+            inicio: "required",
+            fim: "required",
+            unidade_producao_id: "required"
         },
         highlight: function(element) {
             $(element).addClass('is-invalid');

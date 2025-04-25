@@ -27,7 +27,9 @@ class AnoAgricolaController extends Controller
      */
     public function create()
     {
-        return view("anoAgricola.create");
+        $unidadesProducao = UnidadeProducao::all();
+
+        return view("anoAgricola.create")->with("unidadesProducao", $unidadesProducao);
     }
 
     /**
@@ -65,7 +67,7 @@ class AnoAgricolaController extends Controller
     {
         $unidadesProducao = UnidadeProducao::all();
 
-    return view("anoAgricola.edit")
+        return view("anoAgricola.edit")
         ->with("anoAgricola", $anoAgricola)
         ->with("unidadesProducao", $unidadesProducao);
     }
