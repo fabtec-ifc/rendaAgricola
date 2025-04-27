@@ -2,7 +2,7 @@
 
 @section("body")
 
-    <h3>Pessoa</h3>
+    <h3>Pessoas da Produção</h3>
 
     {{-- Pesquisa e botão de cadastro de Pessoa-Produção --}}
     <div class="d-flex justify-content-between mb-3">
@@ -35,6 +35,7 @@
                 <th scope="col">@sortablelink('cpf', 'CPF')</th>
                 <th scope="col">@sortablelink('dataNascimento', 'Data de Nascimento')</th>
                 <th scope="col">@sortablelink('diasTrabalho', 'Dias de Trabalho')</th>
+                <th scope="col">@sortablelink('tipo_mao_de_obra_id', 'Tipo de Mão de Obra')</th>
                 <th scope="col" colspan="3" class="text-center">Ações</th>
             </tr>
         </thead>
@@ -46,6 +47,7 @@
                     <td>{{ $pessoaProducao->cpf }}</td>
                     <td>{{ $pessoaProducao->dataNascimento }}</td>
                     <td>{{ $pessoaProducao->diasTrabalho }}</td>
+                    <td>{{ $pessoaProducao->tipoMaoDeObra->descricao }}</td>
                     <td class="text-center">
                         <a class="btn btn-light-blue btn-sm" href="{{ route('pessoaProducao.show', $pessoaProducao->id) }}" data-bs-toggle="tooltip" data-bs-title="Ver">
                             <i class="ri-expand-diagonal-line text-blue"></i>
@@ -60,7 +62,7 @@
                         <form name="form_delete" action="{{ route('pessoaProducao.destroy', $pessoaProducao->id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <span data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, `{{ $pessoaProducao->descricao }}`, 'Tipo de Mão de Obra')">
+                            <span data-bs-toggle="modal" data-bs-target="#mostrarModalExclusao" onclick="botaoExcluir(this, `{{ $pessoaProducao->nome }}`, 'Pessoa na Produção')">
                                 <button type="button" class="btn btn-light-red btn-sm" data-bs-toggle="tooltip" data-bs-title="Excluir">
                                     <i class="ri-delete-bin-line text-red"></i>
                                 </button>

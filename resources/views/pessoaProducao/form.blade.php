@@ -1,6 +1,6 @@
 <fieldset>
     <div class="d-flex justify-content-center">
-        <h2>@isset($pessoaProducao->id) Atualizar @else Cadastrar @endisset Pessoa-Produção</h2>
+        <h2>@isset($pessoaProducao->id) Atualizar @else Cadastrar @endisset Pessoa na Produção</h2>
     </div>
 
     <div class="row justify-content-center mt-3">
@@ -27,7 +27,6 @@
                     placeholder="Informe o CPF"
                     class="form-control"
                     name="cpf"
-                    required="required"
                     maxlength="16"
                     value="{{ old('cpf', $pessoaProducao->cpf ?? '') }}"
                     id="cpf"
@@ -78,8 +77,6 @@
                 </select>
             </div>
 
-            {{-- Remover esta sessão comentada ao adicionar ano agrícola --}}
-            {{--
             <div class="mt-3">
                 <label for="ano_agricola_id">Ano Agrícola</label>
                 <select
@@ -88,17 +85,16 @@
                     id="ano_agricola_id"
                 >
                     <option value="">Escolha um ano agrícola</option>
-                    @foreach($anosAgricola as $anoAgricola)
+                    @foreach($anosAgricolas as $anoAgricola)
                         <option
                             value="{{ $anoAgricola->id }}"
                             {{ old('ano_agricola_id', $pessoaProducao->ano_agricola_id ?? '') == $anoAgricola->id ? 'selected' : '' }}
                         >
-                            {{ $anoAgricola->inicio }}
+                            {{ date_format(date_create($anoAgricola->inicio), "d/m/Y") }} a {{ date_format(date_create($anoAgricola->fim), "d/m/Y") }}
                         </option>
                     @endforeach
                 </select>
             </div>
-            --}}
 
             <div class="row justify-content-center mt-3">
                 <div class="col-6 text-end">
@@ -111,10 +107,14 @@
                     </button>
                 </div>
                 <div class="col-6 text-start">
-                    <a href="/pessoa" class="btn btn-light border-secondary">Consultar</a>
+                    <a href="/pessoaProducao" class="btn btn-light border-secondary">Consultar</a>
                 </div>
             </div>
 
         </div>
     </div>
 </fieldset>
+
+@push('validation')
+    @vite('resources/js/validation/pessoaProducao.js')
+@endpush

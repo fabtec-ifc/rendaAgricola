@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PessoaProducao;
 use App\Models\TipoMaoDeObra;
-//use App\Models\AnoAgricola;
+use App\Models\AnoAgricola;
 use Illuminate\Http\Request;
 
 class PessoaProducaoController extends Controller
@@ -29,9 +29,9 @@ class PessoaProducaoController extends Controller
     public function create()
     {
         $tiposMaoDeObra = TipoMaoDeObra::all();
-        //$anosAgricola = AnoAgricola::all();
+        $anosAgricolas = AnoAgricola::all();
 
-        return view("pessoaProducao.create", ["tiposMaoDeObra"=>$tiposMaoDeObra]);
+        return view("pessoaProducao.create", ["tiposMaoDeObra"=>$tiposMaoDeObra, "anosAgricolas" => $anosAgricolas]);
     }
 
     /**
@@ -46,7 +46,7 @@ class PessoaProducaoController extends Controller
         $pessoa->dataNascimento = $request->input("dataNascimento");
         $pessoa->diasTrabalho = $request->input("diasTrabalho");
         $pessoa->tipo_mao_de_obra_id = $request->input("tipo_mao_de_obra_id");
-        //$pessoa->ano_agricola_id = $request->input("ano_agricola_id");
+        $pessoa->ano_agricola_id = $request->input("ano_agricola_id");
 
         try {
             $pessoa->save();
@@ -54,15 +54,15 @@ class PessoaProducaoController extends Controller
             return redirect()->route("pessoaProducao.index")->with("toast", ["type" => "warning", "message" => "Erro inesperado: " . $e->getMessage() . ""]);
         }
 
-        return redirect()->route("pessoaProducao.index")->with("toast", ["type" => "success", "message" => "Pessoa Produção adicionada com sucesso!"]);
+        return redirect()->route("pessoaProducao.index")->with("toast", ["type" => "success", "message" => "Pessoa da Produção adicionada com sucesso!"]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(PessoaProducao $pessoa)
+    public function show(PessoaProducao $pessoaProducao)
     {
-        return view("pessoaProducao.show")->with("pessoa", $pessoa);
+        return view("pessoaProducao.show")->with("pessoa", $pessoaProducao);
     }
 
     /**
@@ -71,8 +71,9 @@ class PessoaProducaoController extends Controller
     public function edit(PessoaProducao $pessoaProducao)
     {
         $tiposMaoDeObra = TipoMaoDeObra::all();
-    
-        return view("pessoaProducao.edit", compact("pessoaProducao", "tiposMaoDeObra"));
+        $anosAgricolas = AnoAgricola::all();
+
+        return view("pessoaProducao.edit", compact("pessoaProducao", "tiposMaoDeObra", "anosAgricolas"));
     }
 
     /**
@@ -85,8 +86,8 @@ class PessoaProducaoController extends Controller
         $pessoaProducao->dataNascimento = $request->input("dataNascimento");
         $pessoaProducao->diasTrabalho = $request->input("diasTrabalho");
         $pessoaProducao->tipo_mao_de_obra_id = $request->input("tipo_mao_de_obra_id");
-        // $pessoaProducao->ano_agricola_id = $request->input("ano_agricola_id");
-    
+        $pessoaProducao->ano_agricola_id = $request->input("ano_agricola_id");
+
         try {
             $pessoaProducao->save();
         } catch (\Exception $e) {
@@ -95,13 +96,13 @@ class PessoaProducaoController extends Controller
                 "message" => "Erro inesperado: " . $e->getMessage()
             ]);
         }
-    
+
         return redirect()->route("pessoaProducao.index")->with("toast", [
             "type" => "success",
-            "message" => "Pessoa Produção atualizada com sucesso!"
+            "message" => "Pessoa da Produção atualizada com sucesso!"
         ]);
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -114,6 +115,6 @@ class PessoaProducaoController extends Controller
             return redirect()->route("pessoaProducao.index")->with("toast", ["type" => "warning", "message" => "Erro inesperado: " . $e->getMessage() . ""]);
         }
 
-        return redirect()->route("pessoaProducao.index")->with("toast", ["type" => "success", "message" => "Pessoa excluída com sucesso!"]);
+        return redirect()->route("pessoaProducao.index")->with("toast", ["type" => "success", "message" => "Pessoa da Produção excluída com sucesso!"]);
     }
 }

@@ -28,7 +28,6 @@
                     placeholder="Informe o valor do hectare"
                     class="form-control"
                     name="valorHectare"
-                    required="required"
                     maxlength="16"
                     value="@isset($area->valorHectare){{ $area->valorHectare }}@endisset"
                     id="valorHectare"

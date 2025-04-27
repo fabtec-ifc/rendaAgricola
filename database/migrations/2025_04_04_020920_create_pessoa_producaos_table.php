@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pessoa_producaos', function (Blueprint $table) {
             $table->id();
             $table->string("nome");
-            $table->string("cpf",11);
+            $table->string("cpf",11)->nullable();
             $table->date("dataNascimento");
             $table->integer("diasTrabalho");
             $table->unsignedBigInteger("tipo_mao_de_obra_id");
