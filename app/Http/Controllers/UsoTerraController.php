@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnoAgricola;
 use App\Models\UsoTerra;
 use App\Models\TipoUsoTerra;
 use Illuminate\Http\Request;
@@ -32,7 +33,8 @@ class UsoTerraController extends Controller
     public function create()
     {
         $tiposUso = TipoUsoTerra::all();
-        return view("usoTerra.create", ["tiposUso" => $tiposUso]);
+        $anosAgricolas = AnoAgricola::all();
+        return view("usoTerra.create", ["tiposUso" => $tiposUso, "anosAgricolas" => $anosAgricolas]);
     }
 
     /**
@@ -45,7 +47,7 @@ class UsoTerraController extends Controller
         $usoTerra->quantArea = $request->input("quantArea");
         $usoTerra->areaInaproveitavel = $request->input("areaInaproveitavel");
         $usoTerra->tipo_uso_terra_id = $request->input("tipo_uso_terra_id");
-        //$usoTerra->ano_agricola_id = $request->input("ano_agricola_id");
+        $usoTerra->ano_agricola_id = $request->input("ano_agricola_id");
 
         try {
             $usoTerra->save();
@@ -72,9 +74,11 @@ class UsoTerraController extends Controller
     public function edit(UsoTerra $usoTerra)
     {
         $tiposUso = TipoUsoTerra::all();
+        $anosAgricolas = AnoAgricola::all();
         return view("usoTerra.edit")
             ->with("usoTerra", $usoTerra)
-            ->with("tiposUso", $tiposUso);
+            ->with("tiposUso", $tiposUso)
+            ->with("anosAgricolas", $anosAgricolas);
     }
 
     /**
@@ -85,7 +89,7 @@ class UsoTerraController extends Controller
         $usoTerra->quantArea = $request->input("quantArea");
         $usoTerra->areaInaproveitavel = $request->input("areaInaproveitavel");
         $usoTerra->tipo_uso_terra_id = $request->input("tipo_uso_terra_id");
-        //$usoTerra->ano_agricola_id = $request->input("ano_agricola_id");
+        $usoTerra->ano_agricola_id = $request->input("ano_agricola_id");
 
         try {
             $usoTerra->save();

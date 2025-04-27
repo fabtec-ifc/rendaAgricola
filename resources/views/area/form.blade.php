@@ -88,11 +88,11 @@
                         class="btn btn-light-blue text-blue border-blue"
                         name="acao"
                         value="salvar"
-                        id="acao">@isset($tipoArea->id) Alterar @else Salvar @endisset
+                        id="acao">@isset($area->id) Alterar @else Salvar @endisset
                     </button>
                 </div>
                 <div class="col-6 text-start">
-                    <a href="/tipoArea" class="btn btn-light border-secondary">Consultar</a>
+                    <a href="/area" class="btn btn-light border-secondary">Consultar</a>
                 </div>
             </div>
 

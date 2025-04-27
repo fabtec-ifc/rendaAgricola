@@ -1,6 +1,6 @@
 <fieldset>
     <div class="d-flex justify-content-center">
-        <h2>@isset($uso->id) Atualizar @else Cadastrar @endisset Uso da Terra</h2>
+        <h2>@isset($usoTerra->id) Atualizar @else Cadastrar @endisset Uso da Terra</h2>
     </div>
 
     <div class="row justify-content-center mt-3">
@@ -15,7 +15,7 @@
                     name="quantArea"
                     required="required"
                     maxlength="255"
-                    value="@isset($uso->quantArea){{ $uso->quantArea }}@endisset"
+                    value="@isset($usoTerra->quantArea){{ $usoTerra->quantArea }}@endisset"
                     id="quantArea"
                 >
             </div>
@@ -30,7 +30,7 @@
                     name="areaInaproveitavel"
                     required="required"
                     maxlength="255"
-                    value="@isset($uso->areaInaproveitavel){{ $uso->areaInaproveitavel }}@endisset"
+                    value="@isset($usoTerra->areaInaproveitavel){{ $usoTerra->areaInaproveitavel }}@endisset"
                     id="areaInaproveitavel"
                 >
             </div>
@@ -46,8 +46,8 @@
                     @foreach($tiposUso as $tipo)
                         <option
                             value="{{ $tipo->id }}"
-                            @isset($uso)
-                                @if($tipo->id == $uso->tipo_uso_terra_id)
+                            @isset($usoTerra)
+                                @if($tipo->id == $usoTerra->tipo_uso_terra_id)
                                     selected
                                 @endif
                             @endisset
@@ -58,7 +58,6 @@
                 </select>
             </div>
 
-            {{-- Remover esta sessão comentada ao adicionar ano agrícola futuramente
             <div class="mt-3">
                 <label for="ano_agricola_id">Ano Agrícola</label>
                 <select
@@ -67,21 +66,20 @@
                     id="ano_agricola_id"
                 >
                     <option value="">Escolha um ano agrícola</option>
-                    @foreach($anosAgricola as $anoAgricola)
+                    @foreach($anosAgricolas as $anoAgricola)
                         <option
                             value="{{ $anoAgricola->id }}"
-                            @isset($uso)
-                                @if($anoAgricola->id == $uso->ano_agricola_id)
+                            @isset($usoTerra)
+                                @if($anoAgricola->id == $usoTerra->ano_agricola_id)
                                     selected
                                 @endif
                             @endisset
                         >
-                            {{ $anoAgricola->inicio }}
+                            {{ date_format(date_create($anoAgricola->inicio), "d/m/Y") }} a {{ date_format(date_create($anoAgricola->fim), "d/m/Y") }}
                         </option>
                     @endforeach
                 </select>
             </div>
-            --}}
 
             <div class="row justify-content-center mt-3">
                 <div class="col-6 text-end">
@@ -90,7 +88,7 @@
                         class="btn btn-light-blue text-blue border-blue"
                         name="acao"
                         value="salvar"
-                        id="acao">@isset($uso->id) Alterar @else Salvar @endisset
+                        id="acao">@isset($usoTerra->id) Alterar @else Salvar @endisset
                     </button>
                 </div>
                 <div class="col-6 text-start">
@@ -104,5 +102,5 @@
 </form>
 
 @push('validation')
-    @vite('resources/js/validation/tipoUsoTerra.js')
+    @vite('resources/js/validation/usoTerra.js')
 @endpush
