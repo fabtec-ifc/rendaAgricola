@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Areas;
 use App\Models\TipoArea;
+use App\Models\AnoAgricola;
 use Illuminate\Http\Request;
 
 class AreaController extends Controller
@@ -13,7 +14,7 @@ class AreaController extends Controller
      */
     public function index()
     {
-        
+
         $filtro = request()->input("filtro");
         $areas = Areas::where("quantArea", "LIKE", $filtro."%")->sortable()->paginate(12);
 
@@ -29,9 +30,9 @@ class AreaController extends Controller
     public function create()
     {
         $tiposArea = TipoArea::all();
-        //$anosAgricola = AnoAgricola::all;
+        $anosAgricolas = AnoAgricola::all();
 
-        return view("area.create", ["tiposArea"=>$tiposArea]);
+        return view("area.create", ["tiposArea"=>$tiposArea, "anosAgricolas"=>$anosAgricolas]);
     }
 
     /**
@@ -44,7 +45,7 @@ class AreaController extends Controller
         $area->quantArea = $request->input("quantArea");
         $area->valorHectare = $request->input("valorHectare");
         $area->tipo_area_id = $request->input("tipo_area_id");
-        //$area->ano_agricola_id = $request->input("ano_agricola_id");
+        $area->ano_agricola_id = $request->input("ano_agricola_id");
 
         try{
             $area->save();
@@ -68,10 +69,10 @@ class AreaController extends Controller
      */
     public function edit(Areas $area)
     {
-
         $tiposArea = TipoArea::all();
+        $anosAgricolas = AnoAgricola::all();
 
-        return view("area.edit")->with("area", $area)->with("tiposArea", $tiposArea);
+        return view("area.edit")->with("area", $area)->with("tiposArea", $tiposArea)->with("anosAgricolas", $anosAgricolas);
     }
 
     /**
@@ -82,7 +83,7 @@ class AreaController extends Controller
         $area->quantArea = $request->input("quantArea");
         $area->valorHectare = $request->input("valorHectare");
         $area->tipo_area_id = $request->input("tipo_area_id");
-        //$area->ano_agricola_id = $request->input("ano_agricola_id");
+        $area->ano_agricola_id = $request->input("ano_agricola_id");
 
         try{
             $area->save();

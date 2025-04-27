@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->integer("quantArea");
-            $table->double("valorHectare");
+            $table->double("quantArea");
+            $table->double("valorHectare")->nullable();
             $table->unsignedBigInteger("tipo_area_id");
             $table->unsignedBigInteger("ano_agricola_id");
 

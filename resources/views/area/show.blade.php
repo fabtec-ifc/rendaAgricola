@@ -12,10 +12,16 @@
             <hr class="w-100">
             <div class="row w-100 text-center align-items-center justify-content-center my-2">
                 <div class="col-12">
-                    <p class="my-1">Área Total: <span class="fw-bold">{{ $area->quantArea }}m²</span></p>
+                    <p class="my-1">Área Total: <span class="fw-bold">{{ $area->quantArea }} m²</span></p>
                 </div>
                 <div class="col-12">
-                    <p class="my-1">Valor do Hectare: <span class="fw-bold">R${{ $are->valorHectare }}</span></p>
+                    <p class="my-1">Valor do Hectare: <span class="fw-bold">R$ {{ number_format($area->valorHectare, 2, ',', '.') }}</span></p>
+                </div>
+                <div class="col-12">
+                    <p class="my-1">Tipo de Área: <span class="fw-bold">{{ $area->tipoArea->descricao }}</span></p>
+                </div>
+                <div class="col-12">
+                    <p class="my-1">Ano Agrícola: <span class="fw-bold">{{ date_format(date_create($area->anoAgricola->inicio), "d/m/Y") }} a {{ date_format(date_create($area->anoAgricola->fim), "d/m/Y") }}</span></p>
                 </div>
             </div>
             <hr class="w-100">
