@@ -76,4 +76,8 @@ class User extends Authenticatable
     public function tipoUsuario() {
         return $this->belongsTo(TipoUsuario::class, 'tipo_usuario_id');
     }
+
+    public function unidadesProducao(){
+        return $this->belongsToMany(User_UnidadeProducao::class, "user__unidade_producaos");
+    }
 }
