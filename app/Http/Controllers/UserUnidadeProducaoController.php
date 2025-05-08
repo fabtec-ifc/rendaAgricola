@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UnidadeProducao;
+use App\Models\User;
 use App\Models\User_UnidadeProducao;
 use Illuminate\Http\Request;
 
@@ -10,17 +12,26 @@ class UserUnidadeProducaoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $unidade_producao_id)
     {
-        //
+        $unidadeProducao = UnidadeProducao::find($unidade_producao_id);
+
+        $usuarios = $unidadeProducao->usuarios;
+
+        if(request()->session()->has("toast"))
+            return view("usuarioUnidade.index")->with("usuarios", $usuarios)->with("unidadeProducao", $unidadeProducao)->with(session("toast"));
+
+        return view("usuarioUnidade.index")->with("usuarios", $usuarios)->with("unidadeProducao", $unidadeProducao);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $unidade_producao_id)
     {
-        //
+        $usuarios = User::all();
+
+        return view("usuarioUnidade.create")->with("usuarios", $usuarios);
     }
 
     /**
@@ -28,29 +39,15 @@ class UserUnidadeProducaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuarioUnidade = new User_UnidadeProducao();
+
+        //$usuarioCidade->user_id =
     }
 
     /**
      * Display the specified resource.
      */
     public function show(User_UnidadeProducao $user_UnidadeProducao)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User_UnidadeProducao $user_UnidadeProducao)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User_UnidadeProducao $user_UnidadeProducao)
     {
         //
     }

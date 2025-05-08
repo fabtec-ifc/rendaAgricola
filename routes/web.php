@@ -23,6 +23,7 @@ use App\Http\Controllers\UsoTerraController;
 use App\Http\Controllers\PessoaProducaoController;
 use App\Http\Controllers\AnoAgricolaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserUnidadeProducaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,14 @@ Route::resource("/usoTerra", UsoTerraController::class);
 Route::resource("/pessoaProducao", PessoaProducaoController::class);
 Route::resource("/anoAgricola", AnoAgricolaController::class);
 Route::resource("/usuario", UserController::class);
+
+Route::resource(
+    "/unidadeProducao/{unidade}/usuario", UserUnidadeProducaoController::class
+)->name("index", "usuarioUnidade.index")
+->name("create", "usuarioUnidade.create")
+->name("store", "usuarioUnidade.store")
+->name("show", "usuarioUnidade.show")
+->name("destroy", "usuarioUnidade.destroy");
 
 Route::post("/selectEstado", [UnidadeProducaoController::class, "selectEstado"])->name("selectEstado");
 
