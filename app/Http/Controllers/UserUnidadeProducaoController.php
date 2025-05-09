@@ -16,7 +16,7 @@ class UserUnidadeProducaoController extends Controller
     {
         $unidadeProducao = UnidadeProducao::find($unidade_producao_id);
 
-        $usuarios = $unidadeProducao->usuarios()->sortable()->paginate(12);
+        $usuarios = $unidadeProducao->usuarios()->sortable()->orderBy("pivot_created_at", "desc")->paginate(12);
 
         if(request()->session()->has("toast"))
             return view("usuarioUnidade.index")->with("usuarios", $usuarios)->with("unidadeProducao", $unidadeProducao)->with(session("toast"));

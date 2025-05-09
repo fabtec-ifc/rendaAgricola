@@ -4,12 +4,11 @@
 
     <h4>Unidade de Produção {{ $unidadeProducao->nome }}</h4>
     <hr>
-    <h3>Usuários adicionados</h3>
 
     {{-- Pesquisa e botão de adição de Usuários --}}
     <div class="d-flex justify-content-between mb-3">
-        {{--
-        <form action="{{ route('usuarioUnidade.index') }}" method="get">
+        {{-- Futuramente, verificar como fazer a pesquisa de usuário por nome
+        <form action="{{ route('usuarioUnidade.index', $unidadeProducao->id) }}" method="get">
             <div class="d-flex gap-2">
                 <input placeholder="Pesquisar Usuário por nome" class="form-control" type="text" name="filtro" id="filtro" size="30" value="{{ $filtro }}">
                 <button class="btn btn-light border-secondary" type="submit">
@@ -21,6 +20,8 @@
             </div>
         </form>
         --}}
+
+        <h3>Usuários adicionados</h3>
 
         <a href="{{ route('usuarioUnidade.create', $unidadeProducao->id) }}" class="btn btn-light-green border-green text-green">
             <span class="d-flex align-items-center gap-1">
