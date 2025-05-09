@@ -22,6 +22,6 @@ class UnidadeProducao extends Model
     }
 
     public function usuarios(){
-        return $this->belongsToMany(User_UnidadeProducao::class, "user__unidade_producaos");
+        return $this->belongsToMany(User::class, "user__unidade_producaos");
     }
 }

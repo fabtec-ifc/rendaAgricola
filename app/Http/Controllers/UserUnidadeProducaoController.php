@@ -16,7 +16,7 @@ class UserUnidadeProducaoController extends Controller
     {
         $unidadeProducao = UnidadeProducao::find($unidade_producao_id);
 
-        $usuarios = $unidadeProducao->usuarios;
+        $usuarios = $unidadeProducao->usuarios()->paginate(12);
 
         if(request()->session()->has("toast"))
             return view("usuarioUnidade.index")->with("usuarios", $usuarios)->with("unidadeProducao", $unidadeProducao)->with(session("toast"));
@@ -29,19 +29,29 @@ class UserUnidadeProducaoController extends Controller
      */
     public function create(string $unidade_producao_id)
     {
+        $unidadeProducao = UnidadeProducao::find($unidade_producao_id);
         $usuarios = User::all();
 
-        return view("usuarioUnidade.create")->with("usuarios", $usuarios);
+        return view("usuarioUnidade.create")->with("usuarios", $usuarios)->with("unidadeProducao", $unidadeProducao);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, string $unidade_producao_id)
     {
         $usuarioUnidade = new User_UnidadeProducao();
 
-        //$usuarioCidade->user_id =
+        $usuarioUnidade->user_id = $request->input("user_id");
+        $usuarioUnidade->unidade_producao_id = $unidade_producao_id;
+
+        try{
+            $usuarioUnidade->save();
+        } catch(\Exception $e){
+            return redirect()->route("usuarioUnidade.index", $unidade_producao_id)->with("toast", ["type" => "warning", "message" => "Erro inesperado: ".$e->getMessage()]);
+        }
+
+        return redirect()->route("usuarioUnidade.index", $unidade_producao_id)->with("toast", ["type" => "success", "message" => "Usuário adicionado com sucesso!"]);
     }
 
     /**
@@ -55,8 +65,16 @@ class UserUnidadeProducaoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User_UnidadeProducao $user_UnidadeProducao)
+    public function destroy(string $unidade_producao_id, string $user_id)
     {
-        //
+        $usuarioUnidade = User_UnidadeProducao::where("user_id", $user_id)->where("unidade_producao_id", $unidade_producao_id);
+
+        try{
+            $usuarioUnidade->delete();
+        } catch(\Exception $e){
+            return redirect()->route("usuarioUnidade.index", $unidade_producao_id)->with("toast", ["type" => "warning", "message" => "Erro inesperado: ".$e->getMessage()]);
+        }
+
+        return redirect()->route("usuarioUnidade.index", $unidade_producao_id)->with("toast", ["type" => "success", "message" => "Usuário removido com sucesso!"]);
     }
 }

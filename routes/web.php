@@ -65,7 +65,7 @@ Route::resource("/anoAgricola", AnoAgricolaController::class);
 Route::resource("/usuario", UserController::class);
 
 Route::resource(
-    "/unidadeProducao/{unidade}/usuario", UserUnidadeProducaoController::class
+    "/unidadeProducao/{unidade}/usuarioAdicionado", UserUnidadeProducaoController::class
 )->name("index", "usuarioUnidade.index")
 ->name("create", "usuarioUnidade.create")
 ->name("store", "usuarioUnidade.store")

@@ -78,6 +78,6 @@ class User extends Authenticatable
     }
 
     public function unidadesProducao(){
-        return $this->belongsToMany(User_UnidadeProducao::class, "user__unidade_producaos");
+        return $this->belongsToMany(UnidadeProducao::class, "user__unidade_producaos");
     }
 }
