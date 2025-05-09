@@ -44,9 +44,6 @@
                     <th scope="col">
                         @sortablelink('email', 'E-mail')
                     </th>
-                    <th scope="col">
-                        @sortablelink('tipo_usuario_id', 'Tipo de Usuário')
-                    </th>
                     <th scope="col" colspan="2" class="col-2 text-center">Ações</th>
                 </tr>
             </thead>
@@ -56,7 +53,6 @@
                         <th scope="row">{{ $usuario->id }}</th>
                         <td> {{ $usuario->name }} </td>
                         <td> {{ $usuario->email }} </td>
-                        <td> {{ $usuario->tipoUsuario->descricao }} </td>
                         <td class="text-center">
                             <a class="btn btn-light-blue btn-sm" href="{{ route('usuarioUnidade.show', [$unidadeProducao->id, $usuario->id]) }}" data-bs-toggle="tooltip" data-bs-title="Ver">
                                 <i class="ri-expand-diagonal-line text-blue"></i>

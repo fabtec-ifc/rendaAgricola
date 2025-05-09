@@ -16,7 +16,7 @@ class UserUnidadeProducaoController extends Controller
     {
         $unidadeProducao = UnidadeProducao::find($unidade_producao_id);
 
-        $usuarios = $unidadeProducao->usuarios()->paginate(12);
+        $usuarios = $unidadeProducao->usuarios()->sortable()->paginate(12);
 
         if(request()->session()->has("toast"))
             return view("usuarioUnidade.index")->with("usuarios", $usuarios)->with("unidadeProducao", $unidadeProducao)->with(session("toast"));
@@ -57,9 +57,12 @@ class UserUnidadeProducaoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User_UnidadeProducao $user_UnidadeProducao)
+    public function show(string $unidade_producao_id, string $user_id)
     {
-        //
+        $unidadeProducao = UnidadeProducao::find($unidade_producao_id);
+        $usuario = User::find($user_id);
+
+        return view("usuarioUnidade.show")->with("usuario", $usuario)->with("unidadeProducao", $unidadeProducao);
     }
 
     /**

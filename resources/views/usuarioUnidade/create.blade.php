@@ -2,6 +2,9 @@
 
 @section("body")
 
+<h4>Unidade de Produção {{ $unidadeProducao->nome }}</h4>
+<hr>
+
 <form id="form" action="{{ route('usuarioUnidade.store', $unidadeProducao->id) }}" method="POST">
     @csrf
 
@@ -37,11 +40,11 @@
                             class="btn btn-light-blue text-blue border-blue"
                             name="acao"
                             value="salvar"
-                            id="acao">@isset($municipio->id) Alterar @else Salvar @endisset
+                            id="acao">Adicionar
                         </button>
                     </div>
                     <div class="col-6 text-start">
-                        <a href="/municipio" class="btn btn-light border-secondary">Consultar</a>
+                        <a href="{{ route('usuarioUnidade.index', $unidadeProducao->id) }}" class="btn btn-light border-secondary">Consultar</a>
                     </div>
                 </div>
 
@@ -51,7 +54,7 @@
 </form>
 
 @push('validation')
-    @vite('resources/js/validation/municipio.js')
+    @vite('resources/js/validation/usuarioUnidade.js')
 @endpush
 
 @endsection
