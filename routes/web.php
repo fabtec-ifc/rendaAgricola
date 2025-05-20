@@ -24,6 +24,7 @@ use App\Http\Controllers\PessoaProducaoController;
 use App\Http\Controllers\AnoAgricolaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserUnidadeProducaoController;
+use App\Http\Controllers\IndicadoresController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +72,8 @@ Route::resource(
 ->name("store", "usuarioUnidade.store")
 ->name("show", "usuarioUnidade.show")
 ->name("destroy", "usuarioUnidade.destroy");
+
+Route::get("/unidadeProducao/{unidade}/indicadores", [IndicadoresController::class, "indicadores"])->name("indicadores");
 
 Route::post("/selectEstado", [UnidadeProducaoController::class, "selectEstado"])->name("selectEstado");
 

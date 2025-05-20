@@ -17,4 +17,8 @@ class AnoAgricola extends Model
         return $this->belongsTo(UnidadeProducao::class);
     }
 
+    public function areas(){
+        return $this->hasMany(Area::class);
+    }
+
 }
