@@ -65,6 +65,8 @@ Route::resource("/pessoaProducao", PessoaProducaoController::class);
 Route::resource("/anoAgricola", AnoAgricolaController::class);
 Route::resource("/usuario", UserController::class);
 
+Route::get("/anoAgricola/{ano}/indicadores", [AnoAgricolaController::class, "indicadores"])->name("anoAgricola.indicadores");
+
 Route::resource(
     "/unidadeProducao/{unidade}/usuarioAdicionado", UserUnidadeProducaoController::class
 )->name("index", "usuarioUnidade.index")
@@ -72,8 +74,6 @@ Route::resource(
 ->name("store", "usuarioUnidade.store")
 ->name("show", "usuarioUnidade.show")
 ->name("destroy", "usuarioUnidade.destroy");
-
-Route::get("/unidadeProducao/{unidade}/indicadores", [IndicadoresController::class, "indicadores"])->name("indicadores");
 
 Route::post("/selectEstado", [UnidadeProducaoController::class, "selectEstado"])->name("selectEstado");
 

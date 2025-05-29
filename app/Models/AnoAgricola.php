@@ -21,4 +21,8 @@ class AnoAgricola extends Model
         return $this->hasMany(Area::class);
     }
 
+    public function trabalhadores(){
+        return $this->belongsToMany(Trabalhador::class, "trabalhador__ano_agricolas")->withPivot("diasTrabalho", "tipo_mao_de_obra_id");
+    }
+
 }
