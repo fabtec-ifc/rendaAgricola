@@ -24,6 +24,7 @@ use App\Http\Controllers\PessoaProducaoController;
 use App\Http\Controllers\AnoAgricolaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserUnidadeProducaoController;
+use App\Http\Controllers\IndicadoresController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,8 @@ Route::resource("/usoTerra", UsoTerraController::class);
 Route::resource("/pessoaProducao", PessoaProducaoController::class);
 Route::resource("/anoAgricola", AnoAgricolaController::class);
 Route::resource("/usuario", UserController::class);
+
+Route::get("/anoAgricola/{ano}/indicadores", [AnoAgricolaController::class, "indicadores"])->name("anoAgricola.indicadores");
 
 Route::resource(
     "/unidadeProducao/{unidade}/usuarioAdicionado", UserUnidadeProducaoController::class
