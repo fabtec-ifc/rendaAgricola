@@ -30,17 +30,23 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th scope="col" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                <th scope="col">
                     @sortablelink('id', 'Código')
                 </th>
-                <th scope="col" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <th scope="col">
                     @sortablelink('quantArea', 'Área total')
                 </th>
-                <th scope="col" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    @sortablelink('valorHectare', 'Valor do Hectare')
+                <th scope="col">
+                    @sortablelink('descricao', 'Descrição')
                 </th>
-                <th scope="col" class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                    @sortablelink('tipo_area_id', 'Tipo de Área')
+                <th scope="col">
+                    @sortablelink('valorHectare', 'Valor/Ha')
+                </th>
+                <th scope="col">
+                    @sortablelink('tipo_area_id', 'Tipo')
+                </th>
+                <th scope="col">
+                    @sortablelink('tipo_uso_terras_id', 'Uso')
                 </th>
                 <th scope="col" colspan="3" class="col-3 text-center">Ações</th>
             </tr>
@@ -50,8 +56,11 @@
             <tr>
                 <th scope="row">{{ $area->id }}</th>
                 <td> {{ $area->quantArea }} m²</td>
+                <td> {{ $area->descricao }} </td>
                 <td>R$ {{ number_format($area->valorHectare, 2, ',', '.') }} </td>
-                <td> {{ $area->tipoArea->descricao }} </td>
+                <td> {{ $area->tipoArea->descricao}} </td>
+                <td> {{ $area->tipoUsoTerra->descricao}} </td>
+
                 <td class="text-center">
                     <a class="btn btn-light-blue btn-sm" href="{{ route('area.show', $area->id) }}" data-bs-toggle="tooltip" data-bs-title="Ver">
                         <i class="ri-expand-diagonal-line text-blue"></i>

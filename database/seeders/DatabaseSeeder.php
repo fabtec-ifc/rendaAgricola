@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             TipoUsuarioSeeder::class,
             EstadoSeeder::class,
             MunicipioSeeder::class,
-            TipoMaoDeObraSeeder::class
+            TipoMaoDeObraSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

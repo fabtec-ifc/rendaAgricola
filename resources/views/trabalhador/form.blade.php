@@ -1,6 +1,6 @@
 <fieldset>
     <div class="d-flex justify-content-center">
-        <h2>@isset($pessoaProducao->id) Atualizar @else Cadastrar @endisset Pessoa na Produção</h2>
+        <h2>@isset($trabalhador->id) Atualizar @else Cadastrar @endisset Trabalhador</h2>
     </div>
 
     <div class="row justify-content-center mt-3">
@@ -15,7 +15,7 @@
                     name="nome"
                     required="required"
                     maxlength="255"
-                    value="{{ old('nome', $pessoaProducao->nome ?? '') }}"
+                    value="{{ old('nome', $trabalhador->nome ?? '') }}"
                     id="nome"
                 >
             </div>
@@ -28,7 +28,7 @@
                     class="form-control"
                     name="cpf"
                     maxlength="16"
-                    value="{{ old('cpf', $pessoaProducao->cpf ?? '') }}"
+                    value="{{ old('cpf', $trabalhador->cpf ?? '') }}"
                     id="cpf"
                 >
             </div>
@@ -40,7 +40,7 @@
                     class="form-control"
                     name="dataNascimento"
                     required="required"
-                    value="{{ old('dataNascimento', $pessoaProducao->dataNascimento ?? '') }}"
+                    value="{{ old('dataNascimento', $trabalhador->dataNascimento ?? '') }}"
                     id="dataNascimento"
                 >
             </div>
@@ -53,7 +53,7 @@
                     class="form-control"
                     name="diasTrabalho"
                     required="required"
-                    value="{{ old('diasTrabalho', $pessoaProducao->diasTrabalho ?? '') }}"
+                    value="{{ old('diasTrabalho', $trabalhador->diasTrabalho ?? '') }}"
                     id="diasTrabalho"
                 >
             </div>
@@ -69,7 +69,7 @@
                     @foreach($tiposMaoDeObra as $tipoMaoDeObra)
                         <option
                             value="{{ $tipoMaoDeObra->id }}"
-                            {{ old('tipo_mao_de_obra_id', $pessoaProducao->tipo_mao_de_obra_id ?? '') == $tipoMaoDeObra->id ? 'selected' : '' }}
+                            {{ old('tipo_mao_de_obra_id', $trabalhador->tipo_mao_de_obra_id ?? '') == $tipoMaoDeObra->id ? 'selected' : '' }}
                         >
                             {{ $tipoMaoDeObra->descricao }}
                         </option>
@@ -88,7 +88,7 @@
                     @foreach($anosAgricolas as $anoAgricola)
                         <option
                             value="{{ $anoAgricola->id }}"
-                            {{ old('ano_agricola_id', $pessoaProducao->ano_agricola_id ?? '') == $anoAgricola->id ? 'selected' : '' }}
+                            {{ old('ano_agricola_id', $trabalhador->ano_agricola_id ?? '') == $anoAgricola->id ? 'selected' : '' }}
                         >
                             {{ date_format(date_create($anoAgricola->inicio), "d/m/Y") }} a {{ date_format(date_create($anoAgricola->fim), "d/m/Y") }}
                         </option>
@@ -103,11 +103,11 @@
                         class="btn btn-light-blue text-blue border-blue"
                         name="acao"
                         value="salvar"
-                        id="acao">@isset($pessoaProducao->id) Alterar @else Salvar @endisset
+                        id="acao">@isset($trabalhador->id) Alterar @else Salvar @endisset
                     </button>
                 </div>
                 <div class="col-6 text-start">
-                    <a href="/pessoaProducao" class="btn btn-light border-secondary">Consultar</a>
+                    <a href="/trabalhador" class="btn btn-light border-secondary">Consultar</a>
                 </div>
             </div>
 
@@ -116,5 +116,5 @@
 </fieldset>
 
 @push('validation')
-    @vite('resources/js/validation/pessoaProducao.js')
+    @vite('resources/js/validation/trabalhador.js')
 @endpush

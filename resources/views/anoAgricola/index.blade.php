@@ -40,6 +40,9 @@
                     @sortablelink('fim', 'Fim')
                 </th>
                 <th scope="col" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    @sortablelink('ativo', 'Ativo')
+                </th>
+                <th scope="col" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                     @sortablelink('unidade_producao_id', 'Unidade de Produção')
                 </th>
                 <th scope="col" colspan="3" class="col-3 text-center">Ações</th>
@@ -51,6 +54,7 @@
                 <th scope="row">{{ $anoAgricola->id }}</th>
                 <td> {{ $anoAgricola->inicio }} </td>
                 <td> {{ $anoAgricola->fim }} </td>
+                <td> {{ $anoAgricola->ativo ? 'Sim' : 'Não'}} </td>
                 <td> {{ $anoAgricola->unidadeProducao->nome }} </td>
                 <td class="text-center">
                     <a class="btn btn-light-blue btn-sm" href="{{ route('anoAgricola.show', $anoAgricola->id) }}" data-bs-toggle="tooltip" data-bs-title="Ver">

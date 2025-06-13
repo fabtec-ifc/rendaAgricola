@@ -41,6 +41,7 @@ class AnoAgricolaController extends Controller
 
         $anoAgricola->inicio = $request->input("inicio");
         $anoAgricola->fim = $request->input('fim');
+        $anoAgricola->ativo = $request->input("ativo") ? true : false;
         $anoAgricola->unidade_producao_id = $request->input("unidade_producao_id");
 
         try{
@@ -79,6 +80,7 @@ class AnoAgricolaController extends Controller
     {
         $anoAgricola->inicio = $request->input("inicio");
         $anoAgricola->fim = $request->input('fim');
+        $anoAgricola->ativo = $request->input("ativo") ? true : false;
         $anoAgricola->unidade_producao_id = $request->input("unidade_producao_id");
 
         try{

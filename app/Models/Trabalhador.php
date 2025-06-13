@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
-class PessoaProducao extends Model
+class Trabalhador extends Model
 {
     use HasFactory, Sortable;
 
