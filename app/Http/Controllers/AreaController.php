@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Areas;
+use App\Models\Area;
 use App\Models\TipoArea;
 use App\Models\AnoAgricola;
 use App\Models\TipoUsoTerra;
@@ -17,7 +17,7 @@ class AreaController extends Controller
     {
 
         $filtro = request()->input("filtro");
-        $areas = Areas::where("quantArea", "LIKE", $filtro."%")->sortable()->paginate(12);
+        $areas = Area::where("quantArea", "LIKE", $filtro."%")->sortable()->paginate(12);
 
         if(request()->session()->has("toast"))
             return view("area.index")->with("areas", $areas)->with("filtro", $filtro)->with(session("toast"));
@@ -42,7 +42,7 @@ class AreaController extends Controller
      */
     public function store(Request $request)
     {
-        $area = new Areas();
+        $area = new Area();
 
         $area->quantArea = $request->input("quantArea");
         $area->descricao = $request->input("descricao");
@@ -63,7 +63,7 @@ class AreaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Areas $area)
+    public function show(Area $area)
     {
         return view("area.show")->with("area", $area);
     }
@@ -71,7 +71,7 @@ class AreaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Areas $area)
+    public function edit(Area $area)
     {
         $tiposArea = TipoArea::all();
         $anosAgricolas = AnoAgricola::all();
@@ -83,7 +83,7 @@ class AreaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Areas $area)
+    public function update(Request $request, Area $area)
     {
         $area->quantArea = $request->input("quantArea");
         $area->descricao = $request->input("descricao");
@@ -104,7 +104,7 @@ class AreaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Areas $area)
+    public function destroy(Area $area)
     {
         try{
             $area->delete();

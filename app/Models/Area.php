@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
-class Areas extends Model
+class Area extends Model
 {
     use HasFactory, Sortable;
 
@@ -15,6 +15,10 @@ class Areas extends Model
 
     public function tipoArea(){
         return $this->belongsTo('App\Models\TipoArea');
+    }
+
+    public function tipoUsoTerra(){
+        return $this->belongsTo("App\Models\TipoUsoTerra");
     }
 
     public function anoAgricola(){
