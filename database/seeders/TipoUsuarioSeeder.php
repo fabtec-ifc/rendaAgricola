@@ -14,7 +14,8 @@ class TipoUsuarioSeeder extends Seeder
     public function run(): void
     {
         $tiposUsuario = [
-            ["descricao" => "Administrador"]
+            ["descricao" => "Administrador"],
+            ["descricao" => "Produtor Rural"]
         ];
 
         foreach($tiposUsuario as $tipoUsuario)

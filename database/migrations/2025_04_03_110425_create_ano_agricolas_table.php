@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date('inicio');
             $table->date('fim');
-            $table->unsignedBigInteger('unidade_producao_id');
+            $table->boolean('ativo')->default(true);
+            $table->unsignedBigInteger('unidade_producao_id')->nullable();
             $table->foreign("unidade_producao_id")->references("id")->on("unidade_producaos");
             $table->timestamps();
         });

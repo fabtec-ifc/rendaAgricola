@@ -22,6 +22,6 @@ class UnidadeProducao extends Model
     }
 
     public function usuarios(){
-        return $this->belongsToMany(User::class, "user__unidade_producaos")->withPivot("created_at");
+        return $this->belongsToMany(User::class, "user__unidade_producaos")->withPivot("dono");
     }
 }

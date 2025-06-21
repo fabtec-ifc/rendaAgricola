@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->boolean('politicas')->default(false);
-            $table->string('apelido', 50)->nullable();
             $table->string('token')->nullable();
             $table->boolean('habilitado')->nullable();
             $table->integer('erros')->nullable();

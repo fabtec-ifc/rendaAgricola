@@ -10,6 +10,6 @@ class User_UnidadeProducao extends Model
 {
     use HasFactory, Sortable;
 
-    protected $fillable = ["user_id", "unidade_producao_id"];
-    public $sortable = ["user_id", "unidade_producao_id"];
+    protected $fillable = ["user_id", "unidade_producao_id","dono"];
+    public $sortable = ["user_id", "unidade_producao_id","dono"];
 }

@@ -6,6 +6,7 @@ use App\Models\UnidadeProducao;
 use App\Models\Estado;
 use App\Models\Municipio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UnidadeProducaoController extends Controller
 {
@@ -15,7 +16,11 @@ class UnidadeProducaoController extends Controller
     public function index()
     {
         $filtro = request()->input("filtro");
-        $unidadesProducao = UnidadeProducao::where("nome", "LIKE", $filtro."%")->sortable()->paginate(12);
+        $unidadesProducao = Auth::user()
+            ->unidadesProducao()
+            ->where("nome", "LIKE", $filtro."%")
+            ->sortable()
+            ->paginate(12);
 
         if(request()->session()->has("toast"))
             return view("unidadeProducao.index")->with("unidadesProducao", $unidadesProducao)->with("filtro", $filtro)->with(session("toast"));
@@ -29,7 +34,9 @@ class UnidadeProducaoController extends Controller
     public function create()
     {
         $estados = Estado::all();
-        $municipios = $estados->find(24)->municipios;
+        $municipios = $estados->find(24)->municipios;   
+
+
 
         return view("unidadeProducao.create")->with("estados", $estados)->with("municipios", $municipios);
     }
@@ -46,13 +53,19 @@ class UnidadeProducaoController extends Controller
         $unidadeProducao->municipio_id = $request->input("municipio_id");
         $unidadeProducao->telefone = $request->input("telefone");
 
-        try{
+        try {
             $unidadeProducao->save();
-        } catch(\Exception $e){
-            return redirect()->route("unidadeProducao.index")->with("toast", ["type" => "warning", "message" => "Erro inesperado: ".$e->getMessage()]);
-        }
 
-        return redirect()->route("unidadeProducao.index")->with("toast", ["type" => "success", "message" => "Unidade de Produção adicionada com sucesso!"]);
+            $unidadeProducao->usuarios()->attach(auth()->id(), ['dono' => true]);
+            // Associa o usuário autenticado como dono da unidade de produção (criador = dono)
+
+            return redirect()->route("unidadeProducao.index")
+                ->with("toast", ["type" => "success", "message" => "Unidade de Produção adicionada com sucesso!"]);
+
+        } catch(\Exception $e) {
+            return redirect()->route("unidadeProducao.index")
+                ->with("toast", ["type" => "warning", "message" => "Erro inesperado: ".$e->getMessage()]);
+        }
     }
 
     /**

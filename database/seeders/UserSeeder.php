@@ -17,14 +17,8 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Administrador',
                 'email' => 'eds.riodosul@ifc.edu.br',
-                // 'password' => bcrypt('JeaJaw7DFkw8Tes'),
                 'password' => bcrypt('admin1234'),
-                'politicas' => 1,
-                'habilitado' => 1,
-                'tipoUsuario_id' => 1,
-                'cpf' => 00000000000,
-                'rg' => 0000000,
-                'linkDoLattes' => 'https://lattes.cnpq.br/'
+                'tipo_usuario_id' => '1'
             ],
         ];
 

@@ -20,6 +20,20 @@
                 >
             </div>
 
+            <div>
+                <label for="descricao">Descrição</label>
+                <input
+                    type="text"
+                    placeholder="Informe a descrição da área"
+                    class="form-control"
+                    name="descricao"
+                    required="required"
+                    maxlength="255"
+                    value="@isset($area->descricao){{ $area->descricao }}@endisset"
+                    id="descricao"
+                >
+            </div>
+
             <div class="mt-3">
                 <label for="valorHectare">Valor do Hectare (R$)</label>
                 <input
@@ -75,6 +89,29 @@
                             @endisset
                         >
                             {{ date_format(date_create($anoAgricola->inicio), "d/m/Y") }} a {{ date_format(date_create($anoAgricola->fim), "d/m/Y") }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mt-3">
+                <label for="tipo_uso_terra_id">Tipo de Uso da Terra</label>
+                <select
+                    class="form-select"
+                    name="tipo_uso_terra_id"
+                    id="tipo_uso_terra_id"
+                >
+                    <option value="">Escolha um tipo de uso da terra</option>
+                    @foreach($tiposUsoTerra as $tipoUsoTerra)
+                        <option
+                            value="{{ $tipoUsoTerra->id }}"
+                            @isset($area)
+                                @if($tipoUsoTerra->id == $area->tipo_uso_terra_id)
+                                    selected
+                                @endif
+                            @endisset
+                        >
+                            {{ $tipoUsoTerra->descricao }}
                         </option>
                     @endforeach
                 </select>

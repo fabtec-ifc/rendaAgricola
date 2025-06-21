@@ -29,6 +29,19 @@
                     id="fim"
                 >
             </div>
+            
+            <div class="mt-3">
+                <label for="ativo">Ativo</label> 
+                <select
+                    name="ativo"
+                    id="ativo"
+                    class="form-select"
+                    required="required"
+                >
+                    <option value="1" @if(isset($anoAgricola->ativo) && $anoAgricola->ativo) selected @endif>Sim</option>
+                    <option value="0" @if(isset($anoAgricola->ativo) && !$anoAgricola->ativo) selected @endif>Não</option>
+                </select>
+            </div>
 
             <div class="mt-3">
                 <label for="unidade_producao_id">Unidade de produção</label>

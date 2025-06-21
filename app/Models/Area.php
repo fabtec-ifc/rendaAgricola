@@ -10,8 +10,8 @@ class Area extends Model
 {
     use HasFactory, Sortable;
 
-    protected $fillable = ['quantArea', 'valorHectare', 'tipo_area_id', 'ano_agricola_id'];
-    public $sortable = ['id', 'quantArea', 'valorHectare', 'tipo_area_id'];
+    protected $fillable = ['quantArea', 'descricao', 'valorHectare', 'tipo_area_id', 'ano_agricola_id', 'tipo_uso_terra_id'];
+    public $sortable = ['id', 'quantArea', 'descricao', 'valorHectare', 'tipo_area_id', 'ano_agricola_id', 'tipo_uso_terra_id'];
 
     public function tipoArea(){
         return $this->belongsTo('App\Models\TipoArea');

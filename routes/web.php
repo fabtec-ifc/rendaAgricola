@@ -20,7 +20,7 @@ use App\Http\Controllers\MunicipioController;
 use App\Http\Controllers\UnidadeProducaoController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\UsoTerraController;
-use App\Http\Controllers\PessoaProducaoController;
+use App\Http\Controllers\TrabalhadorController;
 use App\Http\Controllers\AnoAgricolaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserUnidadeProducaoController;
@@ -47,50 +47,50 @@ Route::get('/validarEmail', function(){
 Route::post('/verifytoken', [TokenController::class, 'verify'])->middleware('auth')->name('verify.token');
 
 
-Route::get("/", function(){
-    return redirect("/tipoUsuario");
-})->name("home");
-
-Route::resource("/tipoUsuario", TipoUsuarioController::class);
-Route::resource("/estado", EstadoController::class);
-Route::resource("/faixaEtaria", FaixaEtariaController::class);
-Route::resource("/tipoMaoDeObra", TipoMaoDeObraController::class);
-Route::resource("/tipoUsoTerra", TipoUsoTerraController::class);
-Route::resource("/tipoArea", TipoAreaController::class);
-Route::resource("/municipio", MunicipioController::class);
-Route::resource("/unidadeProducao", UnidadeProducaoController::class);
-Route::resource("/area", AreaController::class);
-Route::resource("/usoTerra", UsoTerraController::class);
-Route::resource("/pessoaProducao", PessoaProducaoController::class);
-Route::resource("/anoAgricola", AnoAgricolaController::class);
-Route::resource("/usuario", UserController::class);
-
-Route::get("/anoAgricola/{ano}/indicadores", [AnoAgricolaController::class, "indicadores"])->name("anoAgricola.indicadores");
-
-Route::resource(
-    "/unidadeProducao/{unidade}/usuarioAdicionado", UserUnidadeProducaoController::class
-)->name("index", "usuarioUnidade.index")
-->name("create", "usuarioUnidade.create")
-->name("store", "usuarioUnidade.store")
-->name("show", "usuarioUnidade.show")
-->name("destroy", "usuarioUnidade.destroy");
-
-Route::post("/selectEstado", [UnidadeProducaoController::class, "selectEstado"])->name("selectEstado");
-
-/*
 Route::get('/', function () {
-    return redirect('/login');
-})->middleware(CheckUserEnabled::class)->name('home');
-*/
+    return redirect()->route('login');
+});
 
-Route::get('/termos', [TermosPoliticasController::class, 'termos'])->name('termos');
-Route::get('/politicas', [TermosPoliticasController::class, 'politicas'])->name('politicas');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth', CheckUserEnabled::class)->group(function () {
+Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::resource("/tipoUsuario", TipoUsuarioController::class);
+    Route::resource("/estado", EstadoController::class);
+    Route::resource("/faixaEtaria", FaixaEtariaController::class);
+    Route::resource("/tipoMaoDeObra", TipoMaoDeObraController::class);
+    Route::resource("/tipoUsoTerra", TipoUsoTerraController::class);
+    Route::resource("/tipoArea", TipoAreaController::class);
+    Route::resource("/municipio", MunicipioController::class);
+    Route::resource("/unidadeProducao", UnidadeProducaoController::class);
+    Route::resource("/area", AreaController::class);
+    Route::resource("/usoTerra", UsoTerraController::class);
+    Route::resource("/trabalhador", TrabalhadorController::class);
+    Route::resource("/anoAgricola", AnoAgricolaController::class);
+    Route::resource("/usuario", UserController::class);
+
+    Route::get("/anoAgricola/{ano}/indicadores", [AnoAgricolaController::class, "indicadores"])->name("anoAgricola.indicadores");
+
+    Route::resource(
+        "/unidadeProducao/{unidade}/usuarioAdicionado", UserUnidadeProducaoController::class
+    )->name("index", "usuarioUnidade.index")
+    ->name("create", "usuarioUnidade.create")
+    ->name("store", "usuarioUnidade.store")
+    ->name("show", "usuarioUnidade.show")
+    ->name("destroy", "usuarioUnidade.destroy");
+
+    Route::post("/selectEstado", [UnidadeProducaoController::class, "selectEstado"])->name("selectEstado");
+});
+
+Route::get('/termos', [TermosPoliticasController::class, 'termos'])->name('termos');
+Route::get('/politicas', [TermosPoliticasController::class, 'politicas'])->name('politicas');
 
 Route::middleware('auth', CheckUserEnabled::class, UserRoute::class)->group(function () {
 
@@ -101,11 +101,5 @@ Route::middleware('auth', CheckUserEnabled::class, UserRoute::class)->group(func
     Route::post('/trabalho/delPalavraChave', [TrabalhoController::class, 'delPalavraChave'])->name('trabalho.delPalavraChave');
     */
 });
-
-/*
-Route::get('/dashboard', function() {
-    return redirect('/usuario');
-});
-*/
 
 require __DIR__.'/auth.php';

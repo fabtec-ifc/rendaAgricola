@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('user__unidade_producaos', function (Blueprint $table) {
             $table->unsignedBigInteger("user_id");
             $table->unsignedBigInteger("unidade_producao_id");
+            $table->boolean("dono")->default(false);
             $table->timestamps();
 
             $table->primary(["user_id", "unidade_producao_id"]);

@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
             $table->double("quantArea");
+            $table->string("descricao")->nullable();
             $table->double("valorHectare")->nullable();
             $table->unsignedBigInteger("tipo_area_id");
             $table->unsignedBigInteger("ano_agricola_id");
+            $table->unsignedBigInteger("tipo_uso_terra_id");
 
             $table->foreign("tipo_area_id")->references("id")->on("tipo_areas");
+            $table->foreign("tipo_uso_terra_id")->references("id")->on("tipo_uso_terras");
             $table->foreign("ano_agricola_id")->references("id")->on("ano_agricolas");
 
             $table->timestamps();

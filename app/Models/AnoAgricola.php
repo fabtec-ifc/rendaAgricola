@@ -10,8 +10,8 @@ class AnoAgricola extends Model
 {
     use HasFactory, Sortable;
 
-    protected $fillable = ["fim", "inicio", "unidade_producao_id"];
-    public $sortable = ["id", "fim", "inicio", "unidade_producao_id"];
+    protected $fillable = ["fim", "inicio", "ativo", "unidade_producao_id"];
+    public $sortable = ["id", "fim", "inicio", "ativo", "unidade_producao_id"];
 
     public function unidadeProducao(){
         return $this->belongsTo(UnidadeProducao::class);

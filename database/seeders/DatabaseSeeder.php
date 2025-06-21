@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             EstadoSeeder::class,
             MunicipioSeeder::class,
             TipoMaoDeObraSeeder::class,
+            UserSeeder::class,
             FaixaEtariaSeeder::class,
             TipoUsoTerraSeeder::class,
             TipoAreaSeeder::class

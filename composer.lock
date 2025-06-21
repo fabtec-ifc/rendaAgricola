@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9720afe2878767af19e3eb02c14a7f8c",
+    "content-hash": "0ba60e606fa73c8fee748e8465fab2ac",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -6449,13 +6449,13 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                },
                 "laravel": {
                     "providers": [
                         "Laravel\\Breeze\\BreezeServiceProvider"
                     ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
                 }
             },
             "autoload": {
@@ -6552,7 +6552,6 @@
         },
         {
             "name": "laravel/sail",
-
             "version": "v1.36.0",
             "source": {
                 "type": "git",
@@ -6563,7 +6562,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sail/zipball/f184d3d687155d06bc8cb9ff6dc48596a138460c",
                 "reference": "f184d3d687155d06bc8cb9ff6dc48596a138460c",
-
                 "shasum": ""
             },
             "require": {
@@ -6613,7 +6611,6 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-
             "time": "2024-10-10T13:26:02+00:00"
         },
         {
