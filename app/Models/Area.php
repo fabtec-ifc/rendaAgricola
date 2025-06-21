@@ -25,8 +25,4 @@ class Area extends Model
         return $this->belongsTo('App\Models\AnoAgricola');
     }
 
-    public function tipoUsoTerra(){
-        return $this->belongsTo('App\Models\TipoUsoTerra');
-    }
-
 }

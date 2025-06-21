@@ -24,6 +24,7 @@ use App\Http\Controllers\TrabalhadorController;
 use App\Http\Controllers\AnoAgricolaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserUnidadeProducaoController;
+use App\Http\Controllers\IndicadoresController;
 
 /*
 |--------------------------------------------------------------------------
